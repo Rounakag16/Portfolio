@@ -5,23 +5,74 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rounak Agarwal | Full-Stack Developer</title>
-  <meta name="description" content="Rounak Agarwal — IT undergraduate at VIT Vellore, full-stack MERN developer and competitive programmer. Explore projects, resume, and achievements.">
-  <meta name="keywords" content="Rounak Agarwal, Full Stack Developer, MERN Stack, React, Node.js, VIT Vellore, Competitive Programming">
+  <title>Rounak Agarwal | Full-Stack Developer (MERN) — VIT Vellore</title>
+  <meta name="description" content="Rounak Agarwal is a full-stack MERN developer and competitive programmer from VIT Vellore. Explore projects (WanderStays, FriendFi), resume, achievements, and blog.">
+  <meta name="keywords" content="Rounak Agarwal, Rounak Agarwal VIT, Rounak Agarwal developer, Full Stack Developer, MERN Stack, React, Node.js, VIT Vellore, Competitive Programming">
   <meta name="author" content="Rounak Agarwal">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://rounak.tech/">
 
   <!-- Open Graph / social preview -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Rounak Agarwal | Full-Stack Developer">
-  <meta property="og:description" content="IT undergraduate at VIT Vellore, full-stack MERN developer and competitive programmer.">
+  <meta property="og:type" content="profile">
+  <meta property="profile:first_name" content="Rounak">
+  <meta property="profile:last_name" content="Agarwal">
+  <meta property="og:title" content="Rounak Agarwal | Full-Stack Developer (MERN) — VIT Vellore">
+  <meta property="og:description" content="Full-stack MERN developer and competitive programmer from VIT Vellore. Projects, resume, achievements, and blog.">
   <meta property="og:image" content="https://rounak.tech/assets/images/Avatar-removebg-preview.png">
   <meta property="og:url" content="https://rounak.tech">
+  <meta property="og:site_name" content="Rounak Agarwal">
   <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Rounak Agarwal | Full-Stack Developer (MERN)">
+  <meta name="twitter:description" content="Full-stack MERN developer and competitive programmer from VIT Vellore.">
+  <meta name="twitter:image" content="https://rounak.tech/assets/images/Avatar-removebg-preview.png">
+
+  <!-- Structured data: helps Google understand this page is specifically
+       about the person "Rounak Agarwal" (helps name-search relevance) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rounak Agarwal",
+    "url": "https://rounak.tech",
+    "image": "https://rounak.tech/assets/images/Avatar-removebg-preview.png",
+    "jobTitle": "Full-Stack Developer",
+    "description": "Full-stack MERN developer and competitive programmer, IT undergraduate at VIT Vellore.",
+    "email": "mailto:rounakoff16@gmail.com",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Vellore Institute of Technology, Vellore"
+    },
+    "sameAs": [
+      "https://github.com/Rounakag16",
+      "https://www.linkedin.com/in/agarwalrounak16/",
+      "https://leetcode.com/u/RounakAg/",
+      "https://www.codechef.com/users/rounak_16",
+      "https://x.com/RounakOff",
+      "https://www.instagram.com/rounak_ag",
+      "https://dev.to/rounakag"
+    ]
+  }
+  </script>
 
   <!--
     - favicon
   -->
   <link rel="shortcut icon" href="./assets/images/Favicon.png" type="image/x-icon">
+
+  <!--
+    - apply saved theme before first paint (prevents flash of wrong theme)
+  -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+          t = "light";
+        }
+        if (t === "light") document.documentElement.setAttribute("data-theme", "light");
+      } catch (e) {}
+    })();
+  </script>
 
   <!--
     - custom css link
@@ -51,6 +102,11 @@
     <aside class="sidebar" data-sidebar>
 
       <div class="sidebar-info">
+
+        <button class="theme-toggle-btn" data-theme-toggle title="Toggle light / dark theme" aria-label="Toggle light and dark theme">
+          <ion-icon name="sunny-outline" class="icon-sun"></ion-icon>
+          <ion-icon name="moon-outline" class="icon-moon"></ion-icon>
+        </button>
 
         <figure class="avatar-box">
           <img src="./assets/images/Avatar-removebg-preview.png" alt="Rounak Agarwal" width="40">
@@ -93,7 +149,7 @@
             </div>
             <div class="contact-info">
               <p class="contact-title">Birth-Date</p>
-              <time datetime="1982-06-23">November 16, 2004</time>
+              <time datetime="2004-11-16">November 16, 2004</time>
             </div>
           </li>
           <li class="contact-item">
@@ -162,7 +218,7 @@
             <button class="navbar-link" data-nav-link>Resume</button>
           </li>
           <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfolio</button>
+            <button class="navbar-link" data-nav-link>Projects</button>
           </li>
           <li class="navbar-item">
             <button class="navbar-link" data-nav-link>Blog</button>
@@ -183,15 +239,16 @@
         </header>
         <section class="about-text">
           <p>
-            I'm an IT undergraduate at VIT Vellore (CGPA: 9.04/10) with hands-on full-stack development experience
-            across the MERN stack, RESTful API design, and real-time systems. I enjoy building secure, scalable,
-            production-ready web applications — from authentication and role-based access control to live,
-            socket-driven features.
+            I'm Rounak, an IT undergraduate at VIT Vellore with a passion for building full-stack web applications
+            that are secure, scalable, and genuinely enjoyable to use. Most of my work lives in the MERN stack, where
+            I like getting into the details — clean RESTful APIs, sensible authentication and access control, and
+            real-time features that make an app feel alive rather than static.
           </p>
           <p>
-            I'm also a competitive programmer with top-global CodeChef rankings and 250+ problems solved on LeetCode,
-            and I have working knowledge of cloud data fundamentals through Google Cloud Platform and BigQuery. I'm
-            driven by continuous learning and enjoy turning ideas into polished, reliable products.
+            Outside of building products, I spend a lot of time on competitive programming, which has sharpened how I
+            think about problems long before I start writing code. I'm also comfortable working with cloud data
+            fundamentals on Google Cloud Platform, and I'm always looking for the next thing to learn, break, and
+            rebuild better.
           </p>
         </section>
 
@@ -414,78 +471,110 @@
 
 
         <!--
-          - clients
+          - tech stack
         -->
 
         <section class="clients">
 
-          <h3 class="h3 clients-title">Tech Stacks</h3>
+          <h3 class="h3 clients-title">Tech Stack</h3>
 
-          <ul class="clients-list has-scrollbar">
-
-            <li class="clients-item">
-              <a href="https://react.dev/" target="_blank">
-                <img src="./assets/images/icons8-react.svg" alt="React logo">
-              </a>
-            </li>
+          <ul class="clients-list">
 
             <li class="clients-item">
-              <a href="https://nodejs.org/" target="_blank">
-                <img src="./assets/images/icons8-nodejs.svg" alt="Node.js logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="https://expressjs.com/" target="_blank">
-                <img src="./assets/images/icons8-express.svg" alt="Express.js logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="https://www.mongodb.com/" target="_blank">
-                <img src="./assets/images/icons8-mongodb.svg" alt="MongoDB logo">
-              </a>
-            </li>
-
-            <li class="clients-item">
-              <a href="https://www.typescriptlang.org/" target="_blank">
-                <img src="./assets/images/icons8-typescript.svg" alt="TypeScript logo">
+              <a href="https://cplusplus.com/doc/" target="_blank">
+                <img src="./assets/images/icons8-c++.svg" alt="C++ logo">
+                <span>C++</span>
               </a>
             </li>
 
             <li class="clients-item">
               <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
                 <img src="./assets/images/icons8-javascript.svg" alt="JavaScript logo">
+                <span>JavaScript</span>
               </a>
             </li>
 
             <li class="clients-item">
-              <a href="https://cloud.google.com/" target="_blank">
-                <img src="./assets/images/icons8-gcp.svg" alt="Google Cloud Platform logo">
+              <a href="https://www.typescriptlang.org/" target="_blank">
+                <img src="./assets/images/icons8-typescript.svg" alt="TypeScript logo">
+                <span>TypeScript</span>
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">
+                <img src="./assets/images/icons8-html.svg" alt="HTML logo">
+                <span>HTML5</span>
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">
+                <img src="./assets/images/icons8-css.svg" alt="CSS logo">
+                <span>CSS3</span>
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="https://react.dev/" target="_blank">
+                <img src="./assets/images/icons8-react.svg" alt="React logo">
+                <span>React.js</span>
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="https://nodejs.org/" target="_blank">
+                <img src="./assets/images/icons8-nodejs.svg" alt="Node.js logo">
+                <span>Node.js</span>
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="https://expressjs.com/" target="_blank">
+                <img src="./assets/images/icons8-express.svg" alt="Express.js logo">
+                <span>Express.js</span>
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="https://socket.io/" target="_blank">
+                <img src="./assets/images/icons8-socketio.svg" alt="Socket.io logo">
+                <span>Socket.io</span>
               </a>
             </li>
 
             <li class="clients-item">
               <a href="https://getbootstrap.com/" target="_blank">
                 <img src="./assets/images/icons8-bootstrap.svg" alt="Bootstrap logo">
+                <span>Bootstrap</span>
               </a>
             </li>
 
             <li class="clients-item">
-              <a href="https://cplusplus.com/doc/" target="_blank">
-                <img src="./assets/images/icons8-c++.svg" alt="C++ logo">
+              <a href="https://www.mongodb.com/" target="_blank">
+                <img src="./assets/images/icons8-mongodb.svg" alt="MongoDB logo">
+                <span>MongoDB</span>
               </a>
             </li>
 
-            <li class="clients-item" target="_blank">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">
-                <img src="./assets/images/icons8-css.svg" alt="CSS logo">
+            <li class="clients-item">
+              <a href="https://www.mysql.com/" target="_blank">
+                <img src="./assets/images/icons8-mysql.svg" alt="MySQL logo">
+                <span>MySQL</span>
               </a>
             </li>
 
-            <li class="clients-item" target="_blank">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">
-                <img src="./assets/images/icons8-html.svg" alt="HTML logo">
+            <li class="clients-item">
+              <a href="https://cloud.google.com/" target="_blank">
+                <img src="./assets/images/icons8-gcp.svg" alt="Google Cloud Platform logo">
+                <span>Google Cloud</span>
+              </a>
+            </li>
+
+            <li class="clients-item">
+              <a href="https://git-scm.com/" target="_blank">
+                <img src="./assets/images/icons8-git.svg" alt="Git logo">
+                <span>Git</span>
               </a>
             </li>
 
@@ -507,7 +596,7 @@
 
         <header>
           <span>
-            <h2 class="h2 article-title">Resume<a href="/assets/ResumeRounak.pdf" target="_blank"><ion-icon
+            <h2 class="h2 article-title">Resume<a href="/assets/ResumeRounak.pdf" target="_blank" title="Download resume"><ion-icon
                   name="download"></ion-icon></a></h2>
           </span>
         </header>
@@ -556,7 +645,7 @@
               <h4 class="h4 timeline-item-title">
                 Web Developer Intern — Rahul Sir's CAT Classes, Delhi
                 <a href="https://drive.google.com/file/d/1Mju_5Lbk4BqBAE38rOQzyG7WZ9-v5QY5/view?usp=sharing"
-                  target="_blank" style="font-size: 12px; margin-left: 6px;">(Certificate)</a>
+                  target="_blank" class="text-link" style="font-size: 12px; margin-left: 6px; display: inline;">Certificate</a>
               </h4>
               <span>Aug 2025 — Feb 2026</span>
               <p class="timeline-text">
@@ -613,13 +702,13 @@
             <li class="timeline-item">
               <h4 class="h4 timeline-item-title">
                 <a href="https://drive.google.com/file/d/1Blx-eVgBAu3eiYkKL8PSN2GOYjFHyNcf/view?usp=sharing"
-                  target="_blank">Full Stack Web Development — Apna College (Delta Program)</a>
+                  target="_blank" class="text-link" style="display: inline;">Full Stack Web Development — Apna College (Delta Program)</a>
               </h4>
             </li>
             <li class="timeline-item">
               <h4 class="h4 timeline-item-title">
-                <a href="https://www.credly.com/badges/4fb1fcde-74d4-46ce-9600-09e0cfb85915" target="_blank">Google
-                  Cloud Data Analytics Certificate (Beginner Path) — Google Skills</a>
+                <a href="https://www.credly.com/badges/4fb1fcde-74d4-46ce-9600-09e0cfb85915" target="_blank"
+                  class="text-link" style="display: inline;">Google Cloud Data Analytics Certificate (Beginner Path) — Google Skills</a>
               </h4>
             </li>
             <li class="timeline-item">
@@ -629,36 +718,70 @@
         </section>
 
         <section class="skill">
-          <h3 class="h3 skills-title">My skills</h3>
-          <ul class="skills-list content-card">
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">MERN Stack & REST APIs</h5>
-                <data value="85">85%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 85%;"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">C++ & DSA</h5>
-                <data value="75">75%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 75%;"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Cloud & Data (GCP, BigQuery)</h5>
-                <data value="55">55%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 55%;"></div>
-              </div>
-            </li>
-          </ul>
+          <h3 class="h3 skills-title">Skills & Concepts</h3>
+          <div class="skills-groups">
+
+            <div class="skills-group">
+              <h4 class="skills-group-title">Languages</h4>
+              <ul class="skills-tags">
+                <li>C++</li>
+                <li>JavaScript (ES6+)</li>
+                <li>TypeScript</li>
+                <li>HTML5</li>
+                <li>CSS3</li>
+              </ul>
+            </div>
+
+            <div class="skills-group">
+              <h4 class="skills-group-title">Frameworks & Libraries</h4>
+              <ul class="skills-tags">
+                <li>React.js</li>
+                <li>Node.js</li>
+                <li>Express.js</li>
+                <li>Mongoose</li>
+                <li>Bootstrap</li>
+                <li>Socket.io</li>
+                <li>Passport.js</li>
+                <li>EJS</li>
+              </ul>
+            </div>
+
+            <div class="skills-group">
+              <h4 class="skills-group-title">Databases & Cloud</h4>
+              <ul class="skills-tags">
+                <li>MongoDB</li>
+                <li>MySQL</li>
+                <li>Google Cloud Platform</li>
+                <li>BigQuery</li>
+              </ul>
+            </div>
+
+            <div class="skills-group">
+              <h4 class="skills-group-title">Tools & Platforms</h4>
+              <ul class="skills-tags">
+                <li>Git & GitHub</li>
+                <li>Postman</li>
+                <li>VS Code</li>
+                <li>Figma</li>
+                <li>Cloudinary</li>
+                <li>Wix</li>
+              </ul>
+            </div>
+
+            <div class="skills-group">
+              <h4 class="skills-group-title">Concepts</h4>
+              <ul class="skills-tags">
+                <li>RESTful APIs</li>
+                <li>JWT & RBAC</li>
+                <li>Agile</li>
+                <li>CI/CD</li>
+                <li>Data Analytics</li>
+                <li>Data Engineering</li>
+                <li>Real-Time Systems</li>
+              </ul>
+            </div>
+
+          </div>
         </section>
       </article>
 
@@ -666,10 +789,10 @@
         - #PORTFOLIO
       -->
 
-      <article class="portfolio" data-page="portfolio">
+      <article class="projects" data-page="projects">
 
         <header>
-          <h2 class="h2 article-title">Portfolio</h2>
+          <h2 class="h2 article-title">Projects</h2>
         </header>
 
         <section class="projects">
@@ -903,30 +1026,25 @@
           <h2 class="h2 article-title">Blog</h2>
         </header>
 
-        <section class="blog-posts">
-          <ul class="blog-posts-list">
-            <!-- <li class="blog-post-item">
-              <a href="#">
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-1.jpg" alt="Design conferences in 2022" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-                    <span class="dot"></span>
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-                  <h3 class="h3 blog-item-title">Design conferences in 2022</h3>
-                  <p class="blog-text">
-                    Veritatis et quasi architecto beatae vitae dicta sunt, explicabo.
-                  </p>
-                </div>
-              </a>
-            </li> -->
-            <h2 style="color: white;">Posting Soon . . . .</h2>
+        <section class="blog-posts" data-blog-list-view>
+          <ul class="blog-posts-list" data-blog-posts-list>
+            <!-- post cards are injected here by assets/js/blog.js, fetched live from dev.to -->
+            <p class="blog-empty-msg" data-blog-empty-msg style="display:none;">
+              No posts yet — check back soon.
+            </p>
           </ul>
         </section>
+
+        <section class="blog-reader" data-blog-reader-view style="display:none;">
+          <button class="blog-back-btn" data-blog-back-btn>
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            <span>Back to all posts</span>
+          </button>
+          <div class="blog-meta" data-blog-reader-meta></div>
+          <h1 class="blog-reader-title" data-blog-reader-title></h1>
+          <div class="blog-reader-body" data-blog-reader-body></div>
+        </section>
+
       </article>
 
 
@@ -963,6 +1081,11 @@
 
 
 
+
+  <!--
+    - blog (fetches posts live from dev.to — see assets/js/blog.js)
+  -->
+  <script src="./assets/js/blog.js"></script>
 
   <!--
     - custom js link
