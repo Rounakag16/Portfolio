@@ -60,21 +60,6 @@
   <link rel="shortcut icon" href="./assets/images/Favicon.png" type="image/x-icon">
 
   <!--
-    - apply saved theme before first paint (prevents flash of wrong theme)
-  -->
-  <script>
-    (function () {
-      try {
-        var t = localStorage.getItem("theme");
-        if (!t && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
-          t = "light";
-        }
-        if (t === "light") document.documentElement.setAttribute("data-theme", "light");
-      } catch (e) {}
-    })();
-  </script>
-
-  <!--
     - custom css link
   -->
   <link rel="stylesheet" href="./assets/css/style.css">
@@ -102,11 +87,6 @@
     <aside class="sidebar" data-sidebar>
 
       <div class="sidebar-info">
-
-        <button class="theme-toggle-btn" data-theme-toggle title="Toggle light / dark theme" aria-label="Toggle light and dark theme">
-          <ion-icon name="sunny-outline" class="icon-sun"></ion-icon>
-          <ion-icon name="moon-outline" class="icon-moon"></ion-icon>
-        </button>
 
         <figure class="avatar-box">
           <img src="./assets/images/Avatar-removebg-preview.png" alt="Rounak Agarwal" width="40">

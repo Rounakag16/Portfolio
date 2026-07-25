@@ -9,6 +9,12 @@
  * match the rest of the portfolio, instead of sending people away.
  *
  * SETUP: put your dev.to username below.
+ *
+ * CUSTOM THUMBNAILS: drop an image into assets/blogs/ named exactly
+ * after a post's title (e.g. "Building FriendFi in 24 Hours.jpg") to use
+ * it instead of dev.to's auto-generated cover image. See
+ * assets/blogs/README.md for details. If no local match exists, the
+ * dev.to cover image is used; if neither exists, no thumbnail is shown.
  */
 const DEVTO_USERNAME = "rounakag";
 
@@ -30,6 +36,46 @@ const DEVTO_USERNAME = "rounakag";
     return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
   }
 
+  function slugify(str) {
+    return String(str)
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
+  }
+
+  // Builds an ordered list of image URLs to try for a post's thumbnail:
+  // exact-title match in assets/blogs/, then a slugified-filename match,
+  // then dev.to's own cover image, in that order.
+  function bannerCandidates(post) {
+    const exts = ["jpg", "jpeg", "png", "webp"];
+    const names = [post.title, slugify(post.title)];
+    const candidates = [];
+    names.forEach(function (name) {
+      exts.forEach(function (ext) {
+        candidates.push("./assets/blogs/" + encodeURIComponent(name) + "." + ext);
+      });
+    });
+    const devtoCover = post.cover_image || post.social_image;
+    if (devtoCover) candidates.push(devtoCover);
+    return candidates;
+  }
+
+  // Global fallback handler used by the inline onerror on each thumbnail
+  // <img>. Walks through the remaining candidate URLs; if none load, the
+  // whole thumbnail box is hidden so the card just shows text.
+  window.__blogImgFallback = function (img) {
+    const remaining = (img.getAttribute("data-fallbacks") || "").split("|").filter(Boolean);
+    if (!remaining.length) {
+      const box = img.closest(".blog-banner-box");
+      if (box) box.style.display = "none";
+      return;
+    }
+    const next = remaining.shift();
+    img.setAttribute("data-fallbacks", remaining.join("|"));
+    img.src = next;
+  };
+
   function showEmpty(message) {
     listEl.innerHTML = "";
     if (emptyMsg) {
@@ -50,12 +96,19 @@ const DEVTO_USERNAME = "rounakag";
     posts.forEach(function (post) {
       const li = document.createElement("li");
       li.className = "blog-post-item";
-      const banner = post.cover_image || post.social_image || "./assets/images/FriendFi-banner.svg";
+      li.setAttribute("data-post-id", post.id);
+
+      const candidates = bannerCandidates(post);
+      const firstSrc = candidates.shift();
       const category = (post.tag_list && post.tag_list[0]) || "Blog";
+
       li.innerHTML = [
         '<a href="#" data-id="' + post.id + '" data-url="' + post.url + '">',
         '  <figure class="blog-banner-box">',
-        '    <img src="' + banner + '" alt="' + post.title + '" loading="lazy">',
+        firstSrc
+          ? '    <img src="' + firstSrc + '" data-fallbacks="' + candidates.join("|") +
+            '" onerror="window.__blogImgFallback(this)" alt="' + post.title + '" loading="lazy">'
+          : "",
         '  </figure>',
         '  <div class="blog-content">',
         '    <div class="blog-meta">',
@@ -68,17 +121,37 @@ const DEVTO_USERNAME = "rounakag";
         '  </div>',
         '</a>'
       ].join("");
+
+      if (!firstSrc) {
+        li.querySelector(".blog-banner-box").style.display = "none";
+      }
+
       listEl.appendChild(li);
     });
   }
 
-  function openPost(id, fallbackUrl) {
-    fetch("https://dev.to/api/articles/" + id)
+  function showUnavailable() {
+    readerMeta.innerHTML = "";
+    readerTitle.textContent = "This post is no longer available";
+    readerBody.innerHTML = "<p>It looks like this post was removed or unpublished on dev.to. Please go back and pick another one.</p>";
+    listView.style.display = "none";
+    readerView.style.display = "block";
+    window.scrollTo(0, 0);
+  }
+
+  function openPost(id, fallbackUrl, cardEl) {
+    fetch("https://dev.to/api/articles/" + id, { cache: "no-store" })
       .then(function (res) {
+        if (res.status === 404) {
+          if (cardEl) cardEl.remove();
+          showUnavailable();
+          return null;
+        }
         if (!res.ok) throw new Error("Article not found");
         return res.json();
       })
       .then(function (post) {
+        if (!post) return; // 404 already handled above
         const tags = (post.tag_list && post.tag_list.join(" · ")) || "Blog";
         readerMeta.innerHTML = [
           '<p class="blog-category">' + tags + '</p>',
@@ -95,7 +168,7 @@ const DEVTO_USERNAME = "rounakag";
         window.scrollTo(0, 0);
       })
       .catch(function () {
-        // fall back to opening the post directly on dev.to
+        // genuine network error (not a 404) — try opening it directly
         if (fallbackUrl) window.open(fallbackUrl, "_blank", "noopener");
       });
   }
@@ -104,7 +177,8 @@ const DEVTO_USERNAME = "rounakag";
     const link = e.target.closest("[data-id]");
     if (!link) return;
     e.preventDefault();
-    openPost(link.getAttribute("data-id"), link.getAttribute("data-url"));
+    const cardEl = link.closest("[data-post-id]");
+    openPost(link.getAttribute("data-id"), link.getAttribute("data-url"), cardEl);
   });
 
   if (backBtn) {
@@ -120,7 +194,7 @@ const DEVTO_USERNAME = "rounakag";
   }
 
   function fetchViaFunction() {
-    return fetch("/.netlify/functions/devto-posts")
+    return fetch("/.netlify/functions/devto-posts", { cache: "no-store" })
       .then(function (res) { return res.json(); })
       .then(function (data) {
         if (Array.isArray(data)) return data;
@@ -129,7 +203,7 @@ const DEVTO_USERNAME = "rounakag";
   }
 
   function fetchViaPublicApi() {
-    return fetch("https://dev.to/api/articles?username=" + encodeURIComponent(DEVTO_USERNAME))
+    return fetch("https://dev.to/api/articles?username=" + encodeURIComponent(DEVTO_USERNAME), { cache: "no-store" })
       .then(function (res) { return res.json(); })
       .then(function (data) { return Array.isArray(data) ? data : []; });
   }

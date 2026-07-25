@@ -158,31 +158,3 @@ for (let i = 0; i < navigationLinks.length; i++) {
   });
 }
 
-
-// theme toggle (dark / light)
-const root = document.documentElement;
-const themeToggleBtn = document.querySelector("[data-theme-toggle]");
-
-const applyTheme = function (theme) {
-  if (theme === "light") {
-    root.setAttribute("data-theme", "light");
-  } else {
-    root.removeAttribute("data-theme");
-  }
-};
-
-// on load: saved preference > OS preference > default dark
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme) {
-  applyTheme(savedTheme);
-} else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
-  applyTheme("light");
-}
-
-if (themeToggleBtn) {
-  themeToggleBtn.addEventListener("click", function () {
-    const nextTheme = root.getAttribute("data-theme") === "light" ? "dark" : "light";
-    applyTheme(nextTheme);
-    localStorage.setItem("theme", nextTheme);
-  });
-}

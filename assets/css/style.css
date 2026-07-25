@@ -85,68 +85,7 @@
 
 }
 
-/**
- * light theme overrides — toggled via [data-theme="light"] on <html>
- */
 
-:root[data-theme="light"] {
-
-  --bg-gradient-onyx: linear-gradient(to bottom right,
-      hsl(30, 22%, 88%) 3%,
-      hsl(32, 38%, 98%) 97%);
-  --bg-gradient-jet: linear-gradient(to bottom right,
-      hsla(30, 30%, 74%, 0.4) 0%,
-      hsla(32, 35%, 93%, 0) 100%), hsl(30, 26%, 93%);
-  --bg-gradient-yellow-1: linear-gradient(to bottom right,
-      hsl(38, 92%, 54%) 0%,
-      hsla(32, 90%, 50%, 0) 50%);
-  --bg-gradient-yellow-2: linear-gradient(135deg,
-      hsla(38, 92%, 54%, 0.24) 0%,
-      hsla(32, 90%, 50%, 0) 59.86%), hsl(30, 26%, 93%);
-  --border-gradient-onyx: linear-gradient(to bottom right,
-      hsl(30, 20%, 70%) 0%,
-      hsla(30, 20%, 70%, 0) 50%);
-  --text-gradient-yellow: linear-gradient(to right,
-      hsl(36, 94%, 40%),
-      hsl(24, 88%, 38%));
-
-  --jet: hsl(30, 18%, 80%);
-  --onyx: hsl(30, 22%, 87%);
-  --eerie-black-1: hsl(32, 38%, 98%);
-  --eerie-black-2: hsl(32, 38%, 98%);
-  --smoky-black: hsl(30, 24%, 89%);
-  --white-1: hsl(28, 25%, 9%);
-  --white-2: hsl(28, 16%, 16%);
-  --orange-yellow-crayola: hsl(36, 94%, 40%);
-  --vegas-gold: hsl(36, 62%, 34%);
-  --light-gray: hsl(28, 10%, 36%);
-  --light-gray-70: hsla(28, 10%, 36%, 0.8);
-  --bittersweet-shimmer: hsl(0, 60%, 43%);
-
-  --shadow-1: -4px 8px 24px hsla(28, 35%, 15%, 0.16);
-  --shadow-2: 0 16px 30px hsla(28, 35%, 15%, 0.15);
-  --shadow-3: 0 16px 40px hsla(28, 35%, 15%, 0.15);
-  --shadow-4: 0 25px 50px hsla(28, 35%, 15%, 0.12);
-  --shadow-5: 0 24px 80px hsla(28, 35%, 15%, 0.18);
-
-  --navbar-glass-bg: hsla(32, 38%, 99%, 0.78);
-  --link-underline: hsla(36, 94%, 40%, 0.45);
-  --scrollbar-thumb: hsla(28, 25%, 12%, 0.16);
-  --scrollbar-thumb-hover: hsla(28, 25%, 12%, 0.26);
-
-}
-
-:root[data-theme="light"] body {
-  background:
-    radial-gradient(circle at 10% -10%, hsla(38, 92%, 60%, 0.16), transparent 45%),
-    radial-gradient(circle at 100% 10%, hsla(200, 60%, 60%, 0.1), transparent 40%),
-    linear-gradient(180deg, hsl(32, 38%, 96%) 0%, hsl(30, 24%, 89%) 100%);
-}
-
-:root[data-theme="light"] .sidebar {
-  background-color: var(--eerie-black-2);
-  background-image: radial-gradient(circle at 20% 0%, hsla(38, 92%, 60%, 0.12), transparent 55%);
-}
 
 
 
@@ -489,59 +428,6 @@ main {
 
 .info_more-btn span {
   display: none;
-}
-
-.theme-toggle-btn {
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 15px 0;
-  color: var(--orange-yellow-crayola);
-  background: var(--border-gradient-onyx);
-  box-shadow: var(--shadow-2);
-  transition: var(--transition-1);
-  z-index: 2;
-}
-
-.theme-toggle-btn::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  border-radius: inherit;
-  background: var(--bg-gradient-jet);
-  transition: var(--transition-1);
-  z-index: -1;
-}
-
-.theme-toggle-btn:hover,
-.theme-toggle-btn:focus {
-  background: var(--bg-gradient-yellow-1);
-}
-
-.theme-toggle-btn:hover::before,
-.theme-toggle-btn:focus::before {
-  background: var(--bg-gradient-yellow-2);
-}
-
-.theme-toggle-btn ion-icon {
-  font-size: 18px;
-}
-
-.theme-toggle-btn .icon-moon {
-  display: none;
-}
-
-:root[data-theme="light"] .theme-toggle-btn .icon-sun {
-  display: none;
-}
-
-:root[data-theme="light"] .theme-toggle-btn .icon-moon {
-  display: block;
 }
 
 .sidebar-info_more {
@@ -2183,7 +2069,7 @@ textarea.form-input::-webkit-resizer {
    * CUSTOM PROPERTY
    */
 
-  :root:not([data-theme="light"]) {
+  :root {
 
     /**
     * shadow
