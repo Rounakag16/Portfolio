@@ -1354,14 +1354,23 @@ main {
   color: var(--light-gray);
   font-size: var(--fs-6);
   line-height: 1.8;
+  word-wrap: break-word;
 }
 
 .blog-reader-body h1,
 .blog-reader-body h2,
-.blog-reader-body h3 {
+.blog-reader-body h3,
+.blog-reader-body h4,
+.blog-reader-body h5,
+.blog-reader-body h6 {
   color: var(--white-2);
   line-height: 1.4;
   margin: 28px 0 12px;
+  font-weight: var(--fw-600);
+}
+
+.blog-reader-body h1 {
+  font-size: var(--fs-1);
 }
 
 .blog-reader-body h2 {
@@ -1372,13 +1381,52 @@ main {
   font-size: var(--fs-3);
 }
 
+.blog-reader-body h4,
+.blog-reader-body h5,
+.blog-reader-body h6 {
+  font-size: var(--fs-4);
+}
+
+/* dev.to renders an (empty, invisible) anchor inside each heading for
+   deep-linking — without this override it inherits the global `a{display:
+   block}` reset and the amber link color/underline, breaking the heading */
+.blog-reader-body h1 a,
+.blog-reader-body h2 a,
+.blog-reader-body h3 a,
+.blog-reader-body h4 a,
+.blog-reader-body h5 a,
+.blog-reader-body h6 a {
+  display: inline;
+  color: inherit;
+  border-bottom: none;
+}
+
 .blog-reader-body p {
   margin-bottom: 16px;
 }
 
+.blog-reader-body strong,
+.blog-reader-body b {
+  color: var(--white-2);
+  font-weight: var(--fw-600);
+}
+
+.blog-reader-body em,
+.blog-reader-body i {
+  font-style: italic;
+}
+
+.blog-reader-body hr {
+  border: none;
+  border-top: 1px solid var(--jet);
+  margin: 28px 0;
+}
+
 .blog-reader-body a {
+  display: inline;
   color: var(--orange-yellow-crayola);
   border-bottom: 1px solid var(--link-underline);
+  word-break: break-word;
 }
 
 .blog-reader-body ul,
@@ -1392,12 +1440,19 @@ main {
   margin-bottom: 8px;
 }
 
+.blog-reader-body li input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  margin-right: 8px;
+}
+
 .blog-reader-body code {
   background: var(--jet);
   color: var(--orange-yellow-crayola);
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.9em;
+  word-break: break-word;
 }
 
 .blog-reader-body pre {
@@ -1409,10 +1464,14 @@ main {
   margin-bottom: 16px;
 }
 
-.blog-reader-body pre code {
+.blog-reader-body pre code,
+.blog-reader-body pre.highlight code,
+.blog-reader-body pre code[class*="language-"] {
   background: none;
   color: var(--light-gray);
   padding: 0;
+  font-size: 0.9em;
+  white-space: pre;
 }
 
 .blog-reader-body blockquote {
@@ -1423,9 +1482,63 @@ main {
 }
 
 .blog-reader-body img {
+  max-width: 100%;
   width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.blog-reader-body figure {
+  margin-bottom: 16px;
+}
+
+.blog-reader-body figcaption {
+  color: var(--light-gray-70);
+  font-size: var(--fs-8);
+  text-align: center;
+  margin-top: -8px;
+}
+
+.blog-reader-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  display: block;
+  overflow-x: auto;
+}
+
+.blog-reader-body th,
+.blog-reader-body td {
+  border: 1px solid var(--jet);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.blog-reader-body th {
+  color: var(--white-2);
+  background: var(--jet);
+}
+
+.blog-reader-body iframe {
+  max-width: 100%;
+  width: 100%;
+  min-height: 340px;
+  border: none;
   border-radius: 12px;
   margin-bottom: 16px;
+}
+
+.blog-reader-body .ltag__link,
+.blog-reader-body .ltag__github,
+.blog-reader-body .ltag-github-readme-tag {
+  display: block;
+  border: 1px solid var(--jet);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  color: inherit;
+  text-decoration: none;
 }
 
 

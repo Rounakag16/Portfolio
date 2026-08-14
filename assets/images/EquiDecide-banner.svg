@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2b2b2d"/>
+      <stop offset="100%" stop-color="#1a1a1c"/>
+    </linearGradient>
+    <linearGradient id="accent3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffe9a8"/>
+      <stop offset="100%" stop-color="#f5c451"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg3)"/>
+  <circle cx="700" cy="60" r="140" fill="#ffdd80" opacity="0.06"/>
+  <circle cx="90" cy="360" r="180" fill="#ffdd80" opacity="0.05"/>
+
+  <g stroke="#f5c451" stroke-width="3" opacity="0.6" fill="none">
+    <line x1="600" y1="150" x2="740" y2="150"/>
+    <line x1="670" y1="150" x2="670" y2="120"/>
+    <line x1="610" y1="150" x2="600" y2="185"/>
+    <line x1="610" y1="150" x2="620" y2="185"/>
+    <line x1="730" y1="150" x2="715" y2="200"/>
+    <line x1="730" y1="150" x2="745" y2="200"/>
+  </g>
+  <circle cx="670" cy="112" r="8" fill="#f5c451"/>
+
+  <text x="60" y="240" font-family="'Poppins', Arial, sans-serif" font-size="50" font-weight="600" fill="#ffffff">EquiDecide</text>
+  <text x="60" y="278" font-family="'Poppins', Arial, sans-serif" font-size="18" font-weight="400" fill="url(#accent3)">Bias-Correction Evaluation Engine</text>
+
+  <g font-family="'Poppins', Arial, sans-serif" font-size="14" font-weight="500" fill="#1a1a1c">
+    <rect x="60" y="315" width="76" height="30" rx="15" fill="#ffe9a8"/>
+    <text x="98" y="335" text-anchor="middle">React</text>
+
+    <rect x="146" y="315" width="66" height="30" rx="15" fill="#ffe9a8"/>
+    <text x="179" y="335" text-anchor="middle">Vite</text>
+
+    <rect x="222" y="315" width="72" height="30" rx="15" fill="#ffe9a8"/>
+    <text x="258" y="335" text-anchor="middle">Flask</text>
+
+    <rect x="304" y="315" width="98" height="30" rx="15" fill="#ffe9a8"/>
+    <text x="353" y="335" text-anchor="middle">Gemini API</text>
+  </g>
+</svg>

@@ -140,18 +140,37 @@ const DEVTO_USERNAME = "rounakag";
   }
 
   function openPost(id, fallbackUrl, cardEl) {
-    fetch("https://dev.to/api/articles/" + id, { cache: "no-store" })
-      .then(function (res) {
-        if (res.status === 404) {
+    var NOT_FOUND = "__NOT_FOUND__";
+
+    function viaFunction() {
+      return fetch("/.netlify/functions/devto-post?id=" + encodeURIComponent(id), { cache: "no-store" })
+        .then(function (res) {
+          if (res.status === 404) return NOT_FOUND;
+          return res.json().then(function (data) {
+            if (data && data.error) throw new Error(data.error);
+            return data;
+          });
+        });
+    }
+
+    function viaDirect() {
+      return fetch("https://dev.to/api/articles/" + id, { cache: "no-store" })
+        .then(function (res) {
+          if (res.status === 404) return NOT_FOUND;
+          if (!res.ok) throw new Error("Article not found");
+          return res.json();
+        });
+    }
+
+    viaFunction()
+      .catch(viaDirect)
+      .then(function (post) {
+        if (post === NOT_FOUND) {
           if (cardEl) cardEl.remove();
           showUnavailable();
-          return null;
+          return;
         }
-        if (!res.ok) throw new Error("Article not found");
-        return res.json();
-      })
-      .then(function (post) {
-        if (!post) return; // 404 already handled above
+
         const tags = (post.tag_list && post.tag_list.join(" · ")) || "Blog";
         readerMeta.innerHTML = [
           '<p class="blog-category">' + tags + '</p>',
@@ -163,14 +182,34 @@ const DEVTO_USERNAME = "rounakag";
           '<p style="margin-top:24px;"><a class="text-link" href="' + post.url +
           '" target="_blank" rel="noopener" style="display:inline;">Read & comment on DEV →</a></p>';
 
+        activateEmbedScripts(readerBody);
+
         listView.style.display = "none";
         readerView.style.display = "block";
         window.scrollTo(0, 0);
       })
       .catch(function () {
-        // genuine network error (not a 404) — try opening it directly
+        // both the function and the direct API failed outright (not a
+        // 404 — a genuine network error) — fall back to opening it on dev.to
         if (fallbackUrl) window.open(fallbackUrl, "_blank", "noopener");
       });
+  }
+
+  // <script> tags set via innerHTML never run (browsers block it for
+  // security). dev.to embeds (Twitter, CodePen, etc.) depend on an
+  // embed script actually executing, so we recreate each one as a real
+  // script element, which does run.
+  function activateEmbedScripts(container) {
+    const scripts = container.querySelectorAll("script");
+    scripts.forEach(function (oldScript) {
+      const newScript = document.createElement("script");
+      for (let i = 0; i < oldScript.attributes.length; i++) {
+        const attr = oldScript.attributes[i];
+        newScript.setAttribute(attr.name, attr.value);
+      }
+      newScript.textContent = oldScript.textContent;
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
   }
 
   listEl.addEventListener("click", function (e) {
