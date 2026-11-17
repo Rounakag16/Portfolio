@@ -32,7 +32,7 @@ export default function ApplyPage() {
         <Avatar pose="celebrating" width={150} className="mx-auto" />
       </div>
 
-      <ul className="mt-12 grid gap-8 sm:grid-cols-3">
+      <ul data-reveal="group" className="mt-12 grid gap-8 sm:grid-cols-3">
         {points.map((p) => (
           <li key={p.title} className="border-t-4 border-charcoal pt-4">
             <h2 className="text-lg font-semibold">{p.title}</h2>
@@ -57,7 +57,7 @@ export default function ApplyPage() {
         ) : (
           <div className="space-y-4 py-6 text-center">
             <p className="text-lg">The application form opens soon. Until then, send your business details on WhatsApp.</p>
-            <WhatsAppButton label="Apply on WhatsApp" message="Hi Rounak, I'd like to apply for the free website. My business is: " />
+            <WhatsAppButton label="Apply on WhatsApp" fallbackLabel="Send your details" message="Hi Rounak, I'd like to apply for the free website. My business is: " />
           </div>
         )}
       </div>

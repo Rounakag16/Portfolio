@@ -25,15 +25,15 @@ export function ClientNav() {
         </ul>
         <div className="ml-auto flex items-center gap-4">
           <Link href="/dev" className="text-sm text-charcoal-soft underline-offset-4 hover:underline">
-            For recruiters →
+            For recruiters
           </Link>
           <a
             href={wa ?? "/#contact"}
             {...(wa ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            className="inline-flex items-center gap-2 rounded-full bg-charcoal px-4 py-2 text-sm font-semibold text-cream hover:bg-charcoal-soft"
+            className="press inline-flex items-center gap-2 rounded-full bg-charcoal px-4 py-2 text-sm font-semibold text-cream hover:bg-charcoal-soft"
           >
-            <WhatsAppIcon className="size-4" />
-            <span>Chat</span>
+            {wa && <WhatsAppIcon className="size-4" />}
+            <span>{wa ? "Chat" : "Contact"}</span>
           </a>
         </div>
       </nav>

@@ -10,9 +10,20 @@ type PageMeta = {
   type?: "website" | "profile" | "article";
 };
 
-/** Per-route metadata with canonical URL and matching Open Graph / Twitter tags. */
+/**
+ * Share cards live at fixed URLs (app/og/*). They're attached here explicitly because a page that sets
+ * its own `openGraph` replaces the parent's file-based image rather than inheriting it.
+ */
+const cards = {
+  client: { url: "/og/client.png", alt: "Websites for Instagram businesses, by Rounak" },
+  dev: { url: "/og/dev.png", alt: "Rounak Agarwal, full-stack developer (MERN and AI)" },
+};
+
+/** Per-route metadata with canonical URL, matching Open Graph / Twitter tags and the right share card. */
 export function pageMetadata({ title, description, path, absoluteTitle, type = "website" }: PageMeta): Metadata {
   const fullTitle = absoluteTitle ? title : `${title} | ${site.shortName}`;
+  const card = path === "/dev" || path.startsWith("/dev/") ? cards.dev : cards.client;
+  const image = { url: card.url, alt: card.alt, width: 1200, height: 630, type: "image/png" };
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
@@ -24,7 +35,8 @@ export function pageMetadata({ title, description, path, absoluteTitle, type = "
       description,
       siteName: site.name,
       locale: "en_IN",
+      images: [image],
     },
-    twitter: { card: "summary_large_image", title: fullTitle, description },
+    twitter: { card: "summary_large_image", title: fullTitle, description, images: [image] },
   };
 }
