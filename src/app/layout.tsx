@@ -6,6 +6,7 @@ import "@fontsource/poppins/latin-700.css";
 import "@fontsource-variable/inter/wght.css";
 import "./globals.css";
 import { site } from "@/content/site";
+import { RevealObserver } from "@/components/RevealObserver";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="antialiased">
         {children}
+        <RevealObserver />
         <Analytics />
       </body>
     </html>

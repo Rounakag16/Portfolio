@@ -83,7 +83,7 @@ export default function WorkshopDesk() {
           const style = { left: `${at.left}%`, top: `${at.top}%`, width: `${at.width}%` };
           const inner = (
             <>
-              <span className="block transition-transform duration-200 ease-out group-hover:-translate-y-1.5 group-focus-visible:-translate-y-1.5 motion-reduce:transform-none" style={{ rotate: `${at.rotate ?? 0}deg` }}>
+              <span className="block transition-transform duration-200 ease-out group-hover:-translate-y-1.5 group-focus-visible:-translate-y-1.5 group-active:scale-[0.97] motion-reduce:translate-none" style={{ rotate: `${at.rotate ?? 0}deg` }}>
                 <Art className="h-auto w-full drop-shadow-[3px_4px_0_var(--color-charcoal)]" />
               </span>
               <span className="pointer-events-none absolute -bottom-3 left-1/2 z-10 -translate-x-1/2 rounded-full bg-white px-3 py-1 font-heading text-sm font-semibold whitespace-nowrap shadow-[0_2px_0_var(--color-charcoal)] ring-2 ring-charcoal transition-colors duration-150 group-hover:bg-orange group-focus-visible:bg-orange">
@@ -117,7 +117,7 @@ export default function WorkshopDesk() {
               <button
                 type="button"
                 onClick={() => dialog.current?.close()}
-                className="grid h-10 w-10 shrink-0 place-items-center rounded-full ring-2 ring-charcoal hover:bg-charcoal hover:text-cream"
+                className="press grid h-10 w-10 shrink-0 place-items-center rounded-full ring-2 ring-charcoal hover:bg-charcoal hover:text-cream"
               >
                 <span aria-hidden className="text-xl leading-none">×</span>
                 <span className="sr-only">Close</span>

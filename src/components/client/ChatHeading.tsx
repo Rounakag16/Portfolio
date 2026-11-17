@@ -19,9 +19,13 @@ export function ChatHeading({
     side === "in"
       ? "rounded-[1.6rem] rounded-bl-md bg-bubble ring-1 ring-charcoal/10"
       : "ml-auto rounded-[1.6rem] rounded-br-md bg-orange";
+  // On first scroll into view a "typing…" bubble shows, then the message pops in from its tail (CSS in globals.css).
   return (
-    <Tag id={id} className={`w-fit max-w-full px-5 py-3 text-[1.75rem] font-bold sm:px-7 sm:text-4xl ${shape} ${className}`}>
-      {children}
-    </Tag>
+    <div className="chat-reveal" data-side={side}>
+      <span aria-hidden className="chat-typing"><span /><span /><span /></span>
+      <Tag id={id} className={`chat-bubble w-fit max-w-full px-5 py-3 text-[1.75rem] font-bold sm:px-7 sm:text-4xl ${shape} ${className}`}>
+        {children}
+      </Tag>
+    </div>
   );
 }
