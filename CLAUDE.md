@@ -38,13 +38,15 @@ src/
   components/
     Avatar.tsx               avatar poses: PNG when ready, vector stand-in otherwise
     client/                  DmHero (scroll animation), BeforeAfter slider, ChatHeading, nav, footer
-    dev/                     DevNav, DevFooter
+    dev/                     DevNav, DevFooter, Workshop (lazy loader) + WorkshopDesk
+      workshop/              DeskArt (SVG objects), Panels (dialog content, reads content/dev.ts)
     phone/                   PhoneFrame plus mock screens (DMs, café, store)
   content/                   ALL copy and data lives here, not in components
     site.ts                  links, handles, WhatsApp number, Formspree, Tally ID
     home.ts                  client home copy (pains, services, steps, FAQ)
     work.ts                  case studies
     dev.ts                   projects, experience, education, skills, patents
+    workshop.ts              Workshop desk labels, panel titles, sticky note
   lib/                       seo.ts (pageMetadata), og.tsx (OG images), devto.ts
 public/assets/               images and resume PDF (paths kept from the old static site)
 public/avatar/               avatar PNGs go here
@@ -91,9 +93,13 @@ public/avatar/               avatar PNGs go here
 - Final fonts, pricing (the site says "pricing on request"), Instagram handle (leaning rounak.builds).
 - The demo sites `cafe.rounak.tech` and `store.rounak.tech` aren't built yet. Set `demoLive: true` in `work.ts` when each one goes live.
 
-## Next up: "The Workshop" on `/dev`
+## "The Workshop" on `/dev` (in progress)
 
-Large screens get a top-down illustrated desk; each object opens a section:
-laptop → featured projects (could open as a code-editor style view), sketchbook → architecture and process, bookshelf or toolbox → skills, framed certificates → education and certifications, paper stack → resume download, phone → contact, coffee mug → about and availability. Also add freelance work reframed technically (admin panels, payments, performance).
+Built: on screens 1024px and wider, an illustrated top-down desk sits between the hero and the stacked sections. Laptop → featured projects (code-editor tabs), sketchbook → design decisions (project highlights), toolbox → skills, framed certificates → education, certifications, patents and competitive programming, paper stack → resume download (direct link), phone → contact, coffee mug → about, availability and experience. Each object is a real `<button>` that opens one native `<dialog>`.
 
-Constraints: the current stacked-card page stays as the mobile and screen-reader version, so the desk is an enhancement on top of it, never a replacement. Resume and GitHub stay one click from the top. Lazy-load the illustration and keep mobile load under 2 seconds.
+Constraints that still hold: the stacked-card page stays the mobile and screen-reader version, so the desk is an enhancement, never a replacement. Resume and GitHub stay one click from the top. The desk chunk loads via a plain `import()` only after `(min-width: 1024px)` matches. Don't switch it to `next/dynamic`, which preloads the chunk in the server HTML.
+
+Still to do:
+- Freelance work reframed technically (admin panels, payments, performance), once there are real projects to describe.
+- Rounak's own process notes and architecture sketches for the sketchbook (TODO in `content/workshop.ts`).
+- Swap the avatar stand-in into the scene once the PNGs exist.

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Avatar } from "@/components/Avatar";
+import { Workshop } from "@/components/dev/Workshop";
 import { JsonLd, personSchema } from "@/components/JsonLd";
 import { site } from "@/content/site";
 import { about, achievements, certifications, education, experience, projects, skills, type Project } from "@/content/dev";
@@ -17,8 +18,8 @@ export const metadata = pageMetadata({
 
 /*
  * This stacked layout is the accessible version of "The Workshop".
- * The illustrated desk will sit on top of it for large screens; this stays as the
- * mobile and screen-reader experience, so every section here must stand on its own.
+ * The illustrated desk (<Workshop />, large screens only, lazy-loaded) sits above it as an
+ * enhancement; this stays the mobile and screen-reader experience, so every section must stand on its own.
  */
 export default function DevPage() {
   const featured = projects.filter((p) => p.featured);
@@ -50,6 +51,8 @@ export default function DevPage() {
         </div>
         <Avatar pose="laptop" width={180} className="mx-auto hidden md:block" />
       </section>
+
+      <Workshop />
 
       <Section id="about" title="About">
         <div className="max-w-[68ch] space-y-4 text-charcoal-soft">
