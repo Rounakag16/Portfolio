@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Avatar } from "@/components/Avatar";
-import { JsonLd, personSchema } from "@/components/JsonLd";
+import { JsonLd, faqSchema, personSchema, serviceSchema } from "@/components/JsonLd";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BeforeAfter } from "@/components/client/BeforeAfter";
 import { ChatHeading } from "@/components/client/ChatHeading";
@@ -19,17 +19,6 @@ export const metadata = pageMetadata({
   path: "/",
 });
 
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": `${site.url}/#service`,
-  name: "Rounak: websites for Instagram businesses",
-  url: site.url,
-  description: "Website design and development for cafés, local shops, coaches, creators and D2C brands that sell through Instagram.",
-  areaServed: { "@type": "Country", name: "India" },
-  founder: { "@id": `${site.url}/#person` },
-  sameAs: [site.instagramBusiness.url],
-};
 
 const container = "mx-auto max-w-6xl px-4 sm:px-6";
 
@@ -38,6 +27,7 @@ export default function HomePage() {
     <>
       <JsonLd data={personSchema} />
       <JsonLd data={serviceSchema} />
+      <JsonLd data={faqSchema} />
 
       <DmHero />
 

@@ -73,6 +73,8 @@ public/avatar/               avatar PNGs go here
 **SEO**
 - Every page sets metadata through `pageMetadata()` in `lib/seo.ts`, with its own canonical path.
 - The Person JSON-LD (`personSchema`) is on both `/` and `/dev` so name searches for "Rounak Agarwal" keep working. Keep it.
+- All structured data lives in `components/JsonLd.tsx` and is built from `content/*`: Person (photo `assets/images/rounak-agarwal.jpg`, skills, credentials), ProfessionalService with the services as offers, and FAQPage on `/`; ProfilePage on `/dev`. Update content, not the schema.
+- Share cards are served from `app/og/client.png` and `app/og/dev.png`; `pageMetadata()` picks one by path. Don't add per-route `opengraph-image` files.
 - New routes get added to `src/app/sitemap.ts`.
 - Old URLs redirect in `next.config.ts` (`/index.html` → `/`, `/patents.html` → `/dev/patents`). Don't remove these.
 

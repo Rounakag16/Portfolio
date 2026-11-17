@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Avatar } from "@/components/Avatar";
 import { Workshop } from "@/components/dev/Workshop";
-import { JsonLd, personSchema } from "@/components/JsonLd";
+import { JsonLd, personSchema, profilePageSchema } from "@/components/JsonLd";
 import { site } from "@/content/site";
 import { about, achievements, certifications, education, experience, projects, skills, type Project } from "@/content/dev";
 import { pageMetadata } from "@/lib/seo";
@@ -11,7 +11,7 @@ export const metadata = pageMetadata({
   title: "Rounak Agarwal | Full-Stack Developer (MERN + AI), VIT Vellore",
   absoluteTitle: true,
   description:
-    "Rounak Agarwal is a full-stack MERN developer from VIT Vellore building multi-tenant apps, graph data tools and LLM-powered features. Projects, resume, experience and contact.",
+    "Rounak Agarwal is a full-stack MERN and AI developer at VIT Vellore building a Stripe-powered LMS, a multi-tenant inventory platform and RAG-based AI agents. Projects, resume and contact.",
   path: "/dev",
   type: "profile",
 });
@@ -28,6 +28,7 @@ export default function DevPage() {
   return (
     <>
       <JsonLd data={personSchema} />
+      <JsonLd data={profilePageSchema} />
 
       <section className="mx-auto grid max-w-5xl gap-10 px-4 pt-14 pb-16 sm:px-6 md:grid-cols-[1fr_auto] md:items-center">
         <div>
