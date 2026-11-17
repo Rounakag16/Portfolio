@@ -1,0 +1,60 @@
+/**
+ * One place for every link, handle and ID the site uses.
+ * Anything marked TODO needs a real value before you deploy.
+ */
+
+export const site = {
+  name: "Rounak Agarwal",
+  shortName: "Rounak",
+  url: "https://rounak.tech",
+  email: "rounakoff16@gmail.com",
+
+  /**
+   * TODO: business WhatsApp number, digits only with country code (e.g. "919876543210").
+   * Kept separate from your personal number on purpose. While this is empty,
+   * WhatsApp buttons fall back to the contact form on the home page.
+   */
+  whatsappNumber: "",
+  whatsappGreeting: "Hi Rounak, I saw your website and I'd like to talk about a website for my business.",
+
+  /** Freelance Instagram (handle not final). */
+  instagramBusiness: { handle: "rounak.builds", url: "https://www.instagram.com/rounak.builds" },
+  /** Personal Instagram, linked from About for trust. */
+  instagramPersonal: { handle: "rounak_ag", url: "https://www.instagram.com/rounak_ag" },
+
+  github: "https://github.com/Rounakag16",
+  linkedin: "https://www.linkedin.com/in/agarwalrounak16/",
+  leetcode: "https://leetcode.com/u/RounakAg/",
+  codechef: "https://www.codechef.com/users/rounak_16",
+  x: "https://x.com/RounakOff",
+  devto: { username: "rounakag", url: "https://dev.to/rounakag" },
+
+  resumePath: "/assets/ResumeRounak.pdf",
+
+  /** Existing Formspree form from the old site. */
+  formspreeAction: "https://formspree.io/f/meozzqze",
+
+  /** TODO: Tally form ID for the free-build application (the part after tally.so/r/). */
+  tallyFormId: "",
+
+  demos: {
+    cafe: "https://cafe.rounak.tech",
+    store: "https://store.rounak.tech",
+  },
+} as const;
+
+export function whatsappLink(message: string = site.whatsappGreeting): string | null {
+  if (!site.whatsappNumber) return null;
+  return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
+/** Profiles listed in the Person structured data (helps name searches). */
+export const sameAs = [
+  site.github,
+  site.linkedin,
+  site.leetcode,
+  site.codechef,
+  site.x,
+  site.instagramPersonal.url,
+  site.devto.url,
+];

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <linearGradient id="bg6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2b2b2d"/>
+      <stop offset="100%" stop-color="#1a1a1c"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg6)"/>
+  <circle cx="680" cy="90" r="150" fill="#ff6b6b" opacity="0.06"/>
+  <circle cx="100" cy="340" r="170" fill="#f5c451" opacity="0.05"/>
+
+  <g transform="translate(600,150)" opacity="0.85">
+    <rect x="0" y="0" width="130" height="92" rx="20" fill="#ff3b3b"/>
+    <polygon points="48,26 48,66 88,46" fill="#ffffff"/>
+  </g>
+
+  <text x="60" y="220" font-family="'Poppins', Arial, sans-serif" font-size="46" font-weight="600" fill="#ffffff">ILoveYT</text>
+  <text x="60" y="256" font-family="'Poppins', Arial, sans-serif" font-size="20" font-weight="400" fill="#f5c451">YouTube Toolkit</text>
+
+  <g font-family="'Poppins', Arial, sans-serif" font-size="14" font-weight="500" fill="#1a1a1c">
+    <rect x="60" y="300" width="76" height="30" rx="15" fill="#ffe9a8"/>
+    <text x="98" y="320" text-anchor="middle">Flask</text>
+
+    <rect x="146" y="300" width="98" height="30" rx="15" fill="#ffe9a8"/>
+    <text x="195" y="320" text-anchor="middle">yt-dlp</text>
+
+    <rect x="254" y="300" width="90" height="30" rx="15" fill="#ffe9a8"/>
+    <text x="299" y="320" text-anchor="middle">Gemini</text>
+
+    <rect x="354" y="300" width="90" height="30" rx="15" fill="#ffe9a8"/>
+    <text x="399" y="320" text-anchor="middle">React</text>
+  </g>
+</svg>

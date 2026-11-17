@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2b2b2d"/>
+      <stop offset="100%" stop-color="#1a1a1c"/>
+    </linearGradient>
+    <linearGradient id="accent5" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffe9a8"/>
+      <stop offset="100%" stop-color="#f5c451"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#bg5)"/>
+  <circle cx="700" cy="60" r="140" fill="#ffdd80" opacity="0.06"/>
+  <circle cx="90" cy="360" r="180" fill="#ffdd80" opacity="0.05"/>
+
+  <g opacity="0.65" fill="none" stroke="#f5c451" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="670" cy="180" r="14"/>
+    <circle cx="730" cy="140" r="10"/>
+    <circle cx="740" cy="230" r="10"/>
+    <circle cx="620" cy="240" r="8"/>
+    <line x1="670" y1="180" x2="730" y2="140"/>
+    <line x1="670" y1="180" x2="740" y2="230"/>
+    <line x1="670" y1="180" x2="620" y2="240"/>
+  </g>
+
+  <text x="60" y="220" font-family="'Poppins', Arial, sans-serif" font-size="46" font-weight="600" fill="#ffffff">Codebase Intelligence</text>
+  <text x="60" y="258" font-family="'Poppins', Arial, sans-serif" font-size="46" font-weight="600" fill="#ffffff">Agent</text>
+  <text x="60" y="288" font-family="'Poppins', Arial, sans-serif" font-size="18" font-weight="400" fill="url(#accent5)">AI Codebase Q&amp;A Agent</text>
+
+  <g font-family="'Poppins', Arial, sans-serif" font-size="14" font-weight="500" fill="#1a1a1c">
+    <rect x="60" y="315" width="94" height="30" rx="15" fill="#ffe9a8"/>
+    <text x="107" y="335" text-anchor="middle">LangChain</text>
+
+    <rect x="164" y="315" width="84" height="30" rx="15" fill="#ffe9a8"/>
+    <text x="206" y="335" text-anchor="middle">Gemini</text>
+
+    <rect x="258" y="315" width="94" height="30" rx="15" fill="#ffe9a8"/>
+    <text x="305" y="335" text-anchor="middle">Astra DB</text>
+
+    <rect x="362" y="315" width="94" height="30" rx="15" fill="#ffe9a8"/>
+    <text x="409" y="335" text-anchor="middle">FastAPI</text>
+  </g>
+</svg>
