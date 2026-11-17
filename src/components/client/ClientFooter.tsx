@@ -18,7 +18,7 @@ export function ClientFooter() {
           </li>
           <li><a href={`mailto:${site.email}`} className="hover:text-orange">{site.email}</a></li>
           <li><Link href="/apply" className="hover:text-orange">Free build</Link></li>
-          <li><Link href="/dev" className="hover:text-orange">For recruiters →</Link></li>
+          <li><Link href="/dev" className="hover:text-orange">For recruiters</Link></li>
         </ul>
       </div>
       <p className="border-t border-cream/10 py-5 text-center text-xs text-cream/60">

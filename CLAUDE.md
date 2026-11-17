@@ -26,7 +26,7 @@ The full design brief is in the claude.ai project "Freelance Rounak" (`claude/we
 src/
   app/
     layout.tsx               root: fonts, metadataBase, analytics
-    globals.css              Tailwind import + @theme brand tokens
+    globals.css              Tailwind import + @theme brand and motion tokens, reveal/press/FAQ motion CSS
     sitemap.ts, robots.ts, icon.png
     (client)/                client pages: shared nav, footer, floating WhatsApp button
       page.tsx               home, every section from the brief
@@ -36,6 +36,7 @@ src/
       page.tsx               stacked-card portfolio (also the Workshop fallback)
       patents/, blog/
   components/
+    RevealObserver.tsx       arms the one-time scroll reveals (mounted in the root layout)
     Avatar.tsx               avatar poses: PNG when ready, vector stand-in otherwise
     client/                  DmHero (scroll animation), BeforeAfter slider, ChatHeading, nav, footer
     dev/                     DevNav, DevFooter, Workshop (lazy loader) + WorkshopDesk
@@ -64,8 +65,8 @@ public/avatar/               avatar PNGs go here
 
 **Design**
 - Palette: charcoal `#1c1917`, orange `#f97316`, cream `#fff7ed`, teal `#14b8a6`. Use the Tailwind tokens (`bg-orange`, `text-charcoal`, `text-orange-deep`, `text-teal-deep`). Orange buttons take charcoal text, never white (contrast).
-- Chat-bubble motif: section headings use `ChatHeading` (`side="in"` for a customer message, `"out"` for Rounak's reply).
-- Motion: the hero scroll animation is the one big moment. Keep everything else still or user-triggered. Respect `prefers-reduced-motion`.
+- Chat-bubble motif: section headings use `ChatHeading` (`side="in"` for a customer message, `"out"` for Rounak's reply). The home page reads as one conversation: position and colour say who is talking. The customer is white and on the left; Rounak is orange (or `orange-200` for long replies) and on the right. Services and the FAQ follow this, and `ReadTicks` marks only solid-orange replies. Don't add decoration that isn't part of the conversation, and don't append `→` to link or button text.
+- Motion: the hero scroll animation is the one big moment. Beyond it, only subtle one-time reveals (`data-reveal="up"` / `"group"`, and `ChatHeading`'s typing bubble, armed by `RevealObserver`) and user-triggered feedback (the `press` utility on buttons). No looping or attention-seeking motion. Use the `--ease-out` / `--ease-in-out` tokens in `globals.css`; UI feedback stays under 300ms. Respect `prefers-reduced-motion` (reveals become a short fade).
 - Mobile-first: most client visitors arrive from Instagram on phones. Check 390px width.
 - Accessibility: visible focus, labelled controls, and the phone mockups use `role="img"` with a description.
 
@@ -88,7 +89,7 @@ public/avatar/               avatar PNGs go here
 
 - Business WhatsApp number and Tally form ID (`src/content/site.ts`).
 - Avatar PNGs.
-- One-line summaries for EquiDecide, EduCore and FriendFi; DeedTracker links if public (`src/content/dev.ts`).
+- One-line summary for EquiDecide; DeedTracker links if public (`src/content/dev.ts`).
 - FAQ answers marked `CONFIRM` in `src/content/home.ts`.
 - Final fonts, pricing (the site says "pricing on request"), Instagram handle (leaning rounak.builds).
 - The demo sites `cafe.rounak.tech` and `store.rounak.tech` aren't built yet. Set `demoLive: true` in `work.ts` when each one goes live.

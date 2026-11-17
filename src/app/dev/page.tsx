@@ -35,16 +35,16 @@ export default function DevPage() {
           <h1 className="mt-3 text-4xl font-bold sm:text-5xl">{site.name}</h1>
           <p className="mt-3 text-xl text-charcoal-soft">Full-stack developer, MERN and AI. IT undergraduate at VIT Vellore.</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href={site.resumePath} download className="rounded-full bg-orange px-5 py-3 font-heading font-semibold text-charcoal shadow-[0_3px_0_var(--color-charcoal)] hover:-translate-y-0.5">
+            <a href={site.resumePath} download className="rounded-full bg-orange px-5 py-3 font-heading font-semibold text-charcoal shadow-[0_3px_0_var(--color-charcoal)] press hover:-translate-y-0.5">
               Download resume
             </a>
-            <a href={site.github} target="_blank" rel="noopener noreferrer" className="rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
+            <a href={site.github} target="_blank" rel="noopener noreferrer" className="press rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
               GitHub
             </a>
-            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="press rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
               LinkedIn
             </a>
-            <a href={`mailto:${site.email}`} className="rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
+            <a href={`mailto:${site.email}`} className="press rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
               Email
             </a>
           </div>
@@ -61,17 +61,17 @@ export default function DevPage() {
       </Section>
 
       <Section id="projects" title="Featured projects">
-        <div className="space-y-8">
+        <div data-reveal="group" className="space-y-8">
           {featured.map((p) => <FeaturedProject key={p.slug} project={p} />)}
         </div>
         <h3 className="mt-14 text-xl font-semibold">More projects</h3>
-        <ul className="mt-5 grid gap-5 sm:grid-cols-2">
+        <ul data-reveal="group" className="mt-5 grid gap-5 sm:grid-cols-2">
           {more.map((p) => <SmallProject key={p.slug} project={p} />)}
         </ul>
       </Section>
 
       <Section id="experience" title="Experience">
-        <ol className="space-y-8">
+        <ol data-reveal="group" className="space-y-8">
           {experience.map((e) => (
             <li key={e.org} className="border-l-4 border-teal pl-5">
               <h3 className="text-lg font-semibold">{e.role}, {e.org}</h3>
@@ -88,7 +88,7 @@ export default function DevPage() {
       </Section>
 
       <Section id="skills" title="Skills">
-        <dl className="grid gap-6 sm:grid-cols-2">
+        <dl data-reveal="group" className="grid gap-6 sm:grid-cols-2">
           {skills.map((s) => (
             <div key={s.group}>
               <dt className="font-heading font-semibold">{s.group}</dt>
@@ -130,7 +130,7 @@ export default function DevPage() {
       </Section>
 
       <Section id="achievements" title="Competitive programming">
-        <ul className="grid gap-4 sm:grid-cols-2">
+        <ul data-reveal="group" className="grid gap-4 sm:grid-cols-2">
           {achievements.map((a) => (
             <li key={a.title} className="rounded-xl bg-white p-4 ring-1 ring-charcoal/10">
               <h3 className="font-semibold">{a.title}</h3>
@@ -164,7 +164,7 @@ export default function DevPage() {
               <span className="text-sm font-medium">Message</span>
               <textarea name="message" required rows={4} className="mt-1 w-full rounded-lg border border-charcoal/20 bg-white px-3 py-2" />
             </label>
-            <button type="submit" className="rounded-full bg-charcoal px-5 py-2.5 font-heading font-semibold text-cream hover:bg-charcoal-soft">
+            <button type="submit" className="press rounded-full bg-charcoal px-5 py-2.5 font-heading font-semibold text-cream hover:bg-charcoal-soft">
               Send message
             </button>
           </form>
@@ -204,7 +204,7 @@ function ProjectLinks({ project }: { project: Project }) {
 
 function FeaturedProject({ project }: { project: Project }) {
   return (
-    <article className="grid gap-6 rounded-2xl bg-white p-5 ring-1 ring-charcoal/10 sm:p-7 md:grid-cols-[1.1fr_1fr]">
+    <article className="grid gap-6 rounded-2xl bg-white p-5 shadow-[4px_5px_0_var(--color-charcoal)] ring-2 ring-charcoal sm:p-7 md:grid-cols-[1.1fr_1fr]">
       <div>
         <h3 className="text-2xl font-bold">{project.name}</h3>
         <p className="mt-2 text-lg">{project.summary}</p>
@@ -218,12 +218,12 @@ function FeaturedProject({ project }: { project: Project }) {
         <div className="mt-4"><ProjectLinks project={project} /></div>
       </div>
       {project.image ? (
-        <div className="relative aspect-[16/10] self-start overflow-hidden rounded-xl bg-cream-deep">
+        <div className="relative aspect-[16/10] self-start overflow-hidden rounded-xl bg-cream-deep ring-1 ring-charcoal/15">
           <Image src={project.image} alt={`${project.name} screenshot`} fill sizes="(min-width: 768px) 420px, 100vw" className="object-cover object-top" />
         </div>
       ) : (
         <div className="grid aspect-[16/10] self-start place-items-center rounded-xl bg-charcoal p-6 text-center font-heading text-cream/80">
-          Screenshot coming soon
+          {project.code || project.live ? "Screenshot coming soon" : "Private client build, so there's no public screenshot"}
         </div>
       )}
     </article>
