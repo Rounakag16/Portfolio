@@ -19,7 +19,7 @@ export type Pose =
  * Poses whose transparent PNG is in /public/avatar/<pose>.png.
  * Add a pose name here once you drop its file in; until then a vector stand-in is drawn.
  */
-const READY = new Set<Pose>([]);
+const READY = new Set<Pose>(["waving", "facepalm", "celebrating", "laptop", "pointing-left", "pointing-right", "thinking", "head"]);
 
 type Props = {
   pose: Pose;

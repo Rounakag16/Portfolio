@@ -141,7 +141,7 @@ export default function HomePage() {
       {/* About */}
       <section id="about" aria-labelledby="about-title" className={`${container} scroll-mt-16 pb-20`}>
         <div data-reveal="up" className="grid items-center gap-10 md:grid-cols-[auto_1fr]">
-          <Avatar pose="arms-crossed" width={190} className="mx-auto" />
+          <Avatar pose="pointing-right" width={190} className="mx-auto" />
           <div>
             <ChatHeading id="about-title">Who&apos;s building this?</ChatHeading>
             <div className="mt-6 max-w-[62ch] space-y-4 text-lg text-charcoal-soft">
@@ -237,7 +237,7 @@ export default function HomePage() {
               </button>
             </form>
           </div>
-          <Avatar pose="thumbs-up" width={150} className="mx-auto hidden md:block" />
+          <Avatar pose="pointing-left" width={170} className="mx-auto hidden md:block" />
         </div>
       </section>
     </>

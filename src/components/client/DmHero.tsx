@@ -69,7 +69,7 @@ export function DmHero() {
 
   const text = (
     <div className="max-w-xl">
-      <Avatar pose="waving" width={92} className="-mb-1" priority />
+      <Avatar pose="waving" width={116} className="-mb-1" priority />
       <h1 className="text-[2.6rem] leading-[1.05] font-bold sm:text-6xl">Websites for Instagram businesses</h1>
       <p className="mt-5 max-w-[46ch] text-lg text-charcoal-soft">
         Your followers ask the same things every day: the menu, the price, the timings, how to order. I build a website that answers all of it, so you can stop replying and start selling.

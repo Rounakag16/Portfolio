@@ -24,7 +24,7 @@ export const personSchema = {
   "@id": personId,
   name: site.name,
   url: site.url,
-  image: `${site.url}/assets/images/rounak-agarwal.jpg`,
+  image: `${site.url}/avatar/head.png`,
   jobTitle: "Full-Stack Developer",
   description:
     "Full-stack MERN and AI developer, competitive programmer and IT undergraduate at VIT Vellore. Builds websites for businesses that sell on Instagram.",
