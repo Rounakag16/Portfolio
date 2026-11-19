@@ -15,7 +15,7 @@ export const metadata = pageMetadata({
   title: "Rounak Agarwal | Websites for Instagram Businesses in India",
   absoluteTitle: true,
   description:
-    "Rounak Agarwal builds fast, mobile-first websites for cafés, coaches, creators and D2C brands that sell on Instagram, so customers find menus, prices and ordering without DMs.",
+    "Rounak Agarwal builds fast, mobile-first websites for cafés, coaches, creators and D2C brands that sell on Instagram.",
   path: "/",
 });
 

@@ -11,7 +11,7 @@ export const metadata = pageMetadata({
   title: "Rounak Agarwal | Full-Stack Developer (MERN + AI), VIT Vellore",
   absoluteTitle: true,
   description:
-    "Rounak Agarwal is a full-stack MERN and AI developer at VIT Vellore building a Stripe-powered LMS, a multi-tenant inventory platform and RAG-based AI agents. Projects, resume and contact.",
+    "Rounak Agarwal, full-stack MERN and AI developer at VIT Vellore. Projects, resume, GitHub and contact.",
   path: "/dev",
   type: "profile",
 });
