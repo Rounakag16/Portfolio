@@ -2,11 +2,13 @@ import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { caseStudies } from "@/content/work";
 
+/*
+ * No lastModified on purpose: stamping every URL with the build time told Google all pages changed on
+ * every deploy, which teaches it to ignore lastmod. Add a real per-page date here if one is ever tracked.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   const page = (path: string, priority: number): MetadataRoute.Sitemap[number] => ({
     url: `${site.url}${path}`,
-    lastModified: now,
     changeFrequency: "monthly",
     priority,
   });
