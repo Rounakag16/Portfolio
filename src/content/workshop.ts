@@ -14,7 +14,7 @@ export const workshop = {
     sketchbook: { label: "Design notes", title: "How they're built", hint: "Opens architecture and design decisions" },
     toolbox: { label: "Skills", title: "Skills and tools", hint: "Opens skills" },
     certificates: { label: "Education", title: "Education and certifications", hint: "Opens education, certifications and achievements" },
-    resume: { label: "Resume", title: "Resume", hint: "Downloads the resume PDF" },
+    resume: { label: "Resume", title: "Resume", hint: "Opens the resume in Google Drive" },
     phone: { label: "Contact", title: "Get in touch", hint: "Opens contact details" },
     mug: { label: "About", title: "About me", hint: "Opens about and availability" },
   } satisfies Record<DeskObjectId, { label: string; title: string; hint: string }>,

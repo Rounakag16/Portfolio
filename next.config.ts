@@ -9,7 +9,9 @@ const nextConfig: NextConfig = {
     return [
       { source: "/index.html", destination: "/", permanent: true },
       { source: "/patents.html", destination: "/dev/patents", permanent: true },
-      { source: "/resume", destination: "/assets/ResumeRounak.pdf", permanent: false },
+      // The resume lives on Google Drive. The old PDF path keeps working for links shared before.
+      { source: "/resume", destination: "https://drive.google.com/file/d/1WYF-PS1QWcyTARXp-tPBglW8T_qC_0KW/view?usp=drive_link", permanent: false },
+      { source: "/assets/ResumeRounak.pdf", destination: "https://drive.google.com/file/d/1WYF-PS1QWcyTARXp-tPBglW8T_qC_0KW/view?usp=drive_link", permanent: false },
     ];
   },
   // Same security headers the Netlify site sent, plus a referrer policy.

@@ -29,7 +29,8 @@ export const site = {
   x: "https://x.com/RounakOff",
   devto: { username: "rounakag", url: "https://dev.to/rounakag" },
 
-  resumePath: "/assets/ResumeRounak.pdf",
+  /** Resume on Google Drive (shared as "anyone with the link"). Replace the file in Drive to update it; the link stays the same. */
+  resumeUrl: "https://drive.google.com/file/d/1WYF-PS1QWcyTARXp-tPBglW8T_qC_0KW/view?usp=drive_link",
 
   /** Existing Formspree form from the old site. */
   formspreeAction: "https://formspree.io/f/meozzqze",

@@ -62,8 +62,7 @@ export const faqs = [
   },
   {
     q: "Who owns the domain and hosting?",
-    // CONFIRM
-    a: "You do. The domain is bought in your name, and I set up fast hosting for you. Nothing is locked to me.",
+    a: "That's up to you. The domain can be bought in your name, or I can buy and manage it for you, whichever you prefer. We settle it, along with hosting, in the plan before I start.",
   },
   {
     q: "Can I make changes after launch?",

@@ -94,7 +94,7 @@ export default function WorkshopDesk() {
           );
           const cls = "group absolute cursor-pointer rounded-xl focus-visible:outline-offset-8";
           return id === "resume" ? (
-            <a key={id} href={site.resumePath} download className={cls} style={style}>{inner}</a>
+            <a key={id} href={site.resumeUrl} target="_blank" rel="noopener noreferrer" className={cls} style={style}>{inner}</a>
           ) : (
             <button key={id} type="button" onClick={() => setOpen(id)} className={cls} style={style} aria-haspopup="dialog">
               {inner}

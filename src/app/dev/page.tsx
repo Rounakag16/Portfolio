@@ -36,8 +36,8 @@ export default function DevPage() {
           <h1 className="mt-3 text-4xl font-bold sm:text-5xl">{site.name}</h1>
           <p className="mt-3 text-xl text-charcoal-soft">Full-stack developer, MERN and AI. IT undergraduate at VIT Vellore.</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href={site.resumePath} download className="rounded-full bg-orange px-5 py-3 font-heading font-semibold text-charcoal shadow-[0_3px_0_var(--color-charcoal)] press hover:-translate-y-0.5">
-              Download resume
+            <a href={site.resumeUrl} target="_blank" rel="noopener noreferrer" className="rounded-full bg-orange px-5 py-3 font-heading font-semibold text-charcoal shadow-[0_3px_0_var(--color-charcoal)] press hover:-translate-y-0.5">
+              View resume
             </a>
             <a href={site.github} target="_blank" rel="noopener noreferrer" className="press rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
               GitHub

@@ -22,8 +22,8 @@ export function DevNav() {
           <a href={site.github} target="_blank" rel="noopener noreferrer" className="hidden text-sm font-medium hover:text-teal-deep sm:inline">
             GitHub
           </a>
-          <a href={site.resumePath} download className="press rounded-full bg-charcoal px-4 py-2 text-sm font-semibold text-cream hover:bg-charcoal-soft">
-            Resume (PDF)
+          <a href={site.resumeUrl} target="_blank" rel="noopener noreferrer" className="press rounded-full bg-charcoal px-4 py-2 text-sm font-semibold text-cream hover:bg-charcoal-soft">
+            Resume
           </a>
         </div>
       </nav>

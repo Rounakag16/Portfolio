@@ -49,7 +49,7 @@ src/
     dev.ts                   projects, experience, education, skills, patents
     workshop.ts              Workshop desk labels, panel titles, sticky note
   lib/                       seo.ts (pageMetadata), og.tsx (OG images), devto.ts
-public/assets/               images and resume PDF (paths kept from the old static site)
+public/assets/               images (paths kept from the old static site); the resume is on Google Drive (`site.resumeUrl`)
 public/avatar/               avatar PNGs go here
 ```
 
@@ -93,10 +93,8 @@ public/avatar/               avatar PNGs go here
 
 - No business WhatsApp number yet (Nov 2026). `whatsappNumber` stays empty on purpose; buttons fall back to the contact form. The personal number is never used.
 - Remaining avatar poses (see Avatar above).
-- FAQ "Who owns the domain and hosting?" is still marked `CONFIRM` in `src/content/home.ts`.
-- New resume PDF without the phone number (the site still serves the old `public/assets/ResumeRounak.pdf`), or a Google Drive share link to the file.
 - Final fonts, pricing (the site says "pricing on request").
-- Decided: DeedTracker stays private (no code or live links). Instagram is @rounakbuilds. Tally form is xVD7g9.
+- Decided: DeedTracker stays private (no code or live links). Instagram is @rounakbuilds. Tally form is xVD7g9. Domain ownership for client sites is the customer's choice. The resume is served from Google Drive; `/resume` and the old `/assets/ResumeRounak.pdf` redirect there.
 - The demo sites `cafe.rounak.tech` and `store.rounak.tech` aren't built yet. Set `demoLive: true` in `work.ts` when each one goes live.
 
 ## "The Workshop" on `/dev` (in progress)
