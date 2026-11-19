@@ -1,5 +1,4 @@
 # rounak.tech on Netlify (project "rounakagportfolio"), built from the main branch on GitHub.
-# Netlify detects Next.js and adds its Next.js runtime automatically; don't pin it.
 [build]
   command = "npm run build"
   publish = ".next"
@@ -7,3 +6,8 @@
 [build.environment]
   # Next.js 16 needs Node 20.9 or newer.
   NODE_VERSION = "22"
+
+# Pinned on purpose: Netlify's automatic detection skipped this runtime once, which published
+# .next as plain static files and turned every URL into a 404. Keep it here and in devDependencies.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
