@@ -73,13 +73,15 @@ public/avatar/               avatar PNGs go here
 **SEO**
 - Every page sets metadata through `pageMetadata()` in `lib/seo.ts`, with its own canonical path.
 - The Person JSON-LD (`personSchema`) is on both `/` and `/dev` so name searches for "Rounak Agarwal" keep working. Keep it.
-- All structured data lives in `components/JsonLd.tsx` and is built from `content/*`: Person (photo `assets/images/rounak-agarwal.jpg`, skills, credentials), ProfessionalService with the services as offers, and FAQPage on `/`; ProfilePage on `/dev`. Update content, not the schema.
+- All structured data lives in `components/JsonLd.tsx` and is built from `content/*`: Person (image is the illustrated avatar `avatar/head.png`, skills, credentials; Rounak doesn't want his photo used), ProfessionalService with the services as offers, and FAQPage on `/`; ProfilePage on `/dev`. Update content, not the schema.
 - Share cards are served from `app/og/client.png` and `app/og/dev.png`; `pageMetadata()` picks one by path. Don't add per-route `opengraph-image` files.
 - New routes get added to `src/app/sitemap.ts`.
 - Old URLs redirect in `next.config.ts` (`/index.html` → `/`, `/patents.html` → `/dev/patents`). Don't remove these.
 
 **Avatar**
-- Drop a pose PNG in `public/avatar/<pose>.png`, then add the pose name to the `READY` set in `Avatar.tsx`.
+- Source artwork lives in `design/avatar-source/` (not published). `python design/avatar-source/make_avatars.py` removes the beige background, trims and pads each image to the 5:6 canvas and writes `public/avatar/<pose>.png`, plus a head-and-shoulders `head.png`.
+- To add a pose: put the artwork in `design/avatar-source/`, map its file name to a pose in `POSES` in the script, run it, then add the pose name to the `READY` set in `Avatar.tsx`.
+- Ready: waving, facepalm, celebrating, laptop, pointing-left, pointing-right, thinking, head. Still drawn as vector stand-ins: thumbs-up, holding-phone, shrug, arms-crossed, presenting (none is used on a page right now).
 
 ## Working with Rounak
 
@@ -89,11 +91,12 @@ public/avatar/               avatar PNGs go here
 
 ## Open items
 
-- Business WhatsApp number and Tally form ID (`src/content/site.ts`).
-- Avatar PNGs.
-- One-line summary for EquiDecide; DeedTracker links if public (`src/content/dev.ts`).
-- FAQ answers marked `CONFIRM` in `src/content/home.ts`.
-- Final fonts, pricing (the site says "pricing on request"), Instagram handle (leaning rounak.builds).
+- No business WhatsApp number yet (Nov 2026). `whatsappNumber` stays empty on purpose; buttons fall back to the contact form. The personal number is never used.
+- Remaining avatar poses (see Avatar above).
+- FAQ "Who owns the domain and hosting?" is still marked `CONFIRM` in `src/content/home.ts`.
+- New resume PDF without the phone number (the site still serves the old `public/assets/ResumeRounak.pdf`), or a Google Drive share link to the file.
+- Final fonts, pricing (the site says "pricing on request").
+- Decided: DeedTracker stays private (no code or live links). Instagram is @rounakbuilds. Tally form is xVD7g9.
 - The demo sites `cafe.rounak.tech` and `store.rounak.tech` aren't built yet. Set `demoLive: true` in `work.ts` when each one goes live.
 
 ## "The Workshop" on `/dev` (in progress)

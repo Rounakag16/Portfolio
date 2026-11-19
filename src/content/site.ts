@@ -10,15 +10,15 @@ export const site = {
   email: "rounakoff16@gmail.com",
 
   /**
-   * TODO: business WhatsApp number, digits only with country code (e.g. "919876543210").
-   * Kept separate from your personal number on purpose. While this is empty,
-   * WhatsApp buttons fall back to the contact form on the home page.
+   * Business WhatsApp number, digits only with country code (e.g. "919876543210").
+   * None yet (Nov 2026), and the personal number stays private, so this is empty on purpose:
+   * WhatsApp buttons say "Send me a message" and lead to the contact form until it's filled in.
    */
   whatsappNumber: "",
   whatsappGreeting: "Hi Rounak, I saw your website and I'd like to talk about a website for my business.",
 
-  /** Freelance Instagram (handle not final). */
-  instagramBusiness: { handle: "rounak.builds", url: "https://www.instagram.com/rounak.builds" },
+  /** Freelance Instagram. */
+  instagramBusiness: { handle: "rounakbuilds", url: "https://www.instagram.com/rounakbuilds/" },
   /** Personal Instagram, linked from About for trust. */
   instagramPersonal: { handle: "rounak_ag", url: "https://www.instagram.com/rounak_ag" },
 
@@ -34,8 +34,8 @@ export const site = {
   /** Existing Formspree form from the old site. */
   formspreeAction: "https://formspree.io/f/meozzqze",
 
-  /** TODO: Tally form ID for the free-build application (the part after tally.so/r/). */
-  tallyFormId: "",
+  /** Tally form for the free-build application (the part after tally.so/r/). */
+  tallyFormId: "xVD7g9",
 
   demos: {
     cafe: "https://cafe.rounak.tech",

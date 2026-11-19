@@ -84,7 +84,7 @@ export const projects: Project[] = [
       "Built for and tested with a real client",
     ],
     stack: ["MongoDB", "Express", "React", "Node.js"],
-    // TODO: add `code` / `live` if you want them public. The client build is private for now.
+    // No `code` / `live` on purpose: the client build stays private.
   },
   {
     slug: "wanderstays",
@@ -98,8 +98,16 @@ export const projects: Project[] = [
   {
     slug: "equidecide",
     name: "EquiDecide",
-    summary: "", // TODO: one-line summary
-    stack: [],
+    summary: "Hackathon app that judges applicants in context, lowering the pass threshold for disadvantage and explaining the difference with an LLM.",
+    problem: "A fixed cutoff treats every applicant the same, whatever their circumstances.",
+    highlights: [
+      "An Opportunity Deficit Score measures disadvantage from location, first-generation status, distance and internet reliability, and lowers the pass threshold to match",
+      "Shows the contextual result next to a normal fixed-cutoff decision, with an LLM explaining the difference",
+      "Explanations stream live from Gemini 2.5 Flash, fall back to a local Ollama llama3.2 and then to fixed text, and cite a JSON file of policy references",
+      "scikit-learn pipeline (scaler plus logistic regression) with pandas and NumPy; Flask backend split into blueprints for each evaluation mode, feedback and analytics",
+      "React 19, TypeScript and Vite frontend with Tailwind CSS, Framer Motion and Chart.js; both parts on Vercel, the backend as a Python serverless function",
+    ],
+    stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Flask", "scikit-learn", "Gemini", "Ollama", "Vercel"],
     image: "/assets/images/equidecide.png",
     code: "https://github.com/Rounakag16/EquiDecide",
     live: "https://equidecide.vercel.app/",

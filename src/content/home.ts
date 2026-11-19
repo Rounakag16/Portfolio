@@ -54,8 +54,7 @@ export const steps = [
 export const faqs = [
   {
     q: "How long does a website take?",
-    // CONFIRM
-    a: "Most sites take one to three weeks, depending on the pages and features. You get a date in the plan before I start.",
+    a: "Most sites take two to three weeks, depending on the pages and features. You get a date in the plan before I start.",
   },
   {
     q: "What do I need to give you?",
