@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Analytics } from "@vercel/analytics/next";
 import "@fontsource/poppins/latin-500.css";
 import "@fontsource/poppins/latin-600.css";
 import "@fontsource/poppins/latin-700.css";
@@ -30,8 +29,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <RevealObserver />
         <GoogleAnalytics />
-        {/* Vercel Analytics only works on Vercel; on Netlify its script would 404 on every page. */}
-        {process.env.VERCEL && <Analytics />}
       </body>
     </html>
   );
