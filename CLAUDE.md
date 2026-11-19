@@ -99,7 +99,7 @@ public/avatar/               avatar PNGs go here
 
 ## "The Workshop" on `/dev` (in progress)
 
-Built: on screens 1024px and wider, an illustrated top-down desk sits between the hero and the stacked sections. Laptop → featured projects (code-editor tabs), sketchbook → design decisions (project highlights), toolbox → skills, framed certificates → education, certifications, patents and competitive programming, paper stack → resume download (direct link), phone → contact, coffee mug → about, availability and experience. Each object is a real `<button>` that opens one native `<dialog>`.
+Built: on screens 1024px and wider, an illustrated top-down desk sits between the hero and the stacked sections. Laptop → featured projects (code-editor tabs), sketchbook → design decisions (project highlights), toolbox → skills, graduation cap → education, framed certificates → certifications and competitive programming, patent folder → patents, paper stack → resume download (direct link), phone → contact, coffee mug → about, availability and experience. Each object is a real `<button>` that opens one native `<dialog>`.
 
 Constraints that still hold: the stacked-card page stays the mobile and screen-reader version, so the desk is an enhancement, never a replacement. Resume and GitHub stay one click from the top. The desk chunk loads via a plain `import()` only after `(min-width: 1024px)` matches. Don't switch it to `next/dynamic`, which preloads the chunk in the server HTML.
 

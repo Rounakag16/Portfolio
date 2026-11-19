@@ -153,9 +153,9 @@ export const achievements = [
 ];
 
 export const certifications = [
-  { title: "Google Cloud Certified: Associate Data Practitioner (2026)", href: "https://www.credly.com/earner/earned/share/248a3d84-d8b2-4a21-8761-3b95133c8583" },
-  { title: "Google Cloud Data Analytics Certificate (5-course program), Google Skills", href: "https://drive.google.com/file/d/1yJBkarQEqbp1QVLulVImsJwCmJb9yoRJ/view?usp=sharing" },
-  { title: "Full Stack Web Development, Apna College (Delta)", href: "https://drive.google.com/file/d/1Blx-eVgBAu3eiYkKL8PSN2GOYjFHyNcf/view?usp=sharing" },
+  { title: "Associate Data Practitioner", issuer: "Google Cloud Certified", year: "2026", href: "https://www.credly.com/earner/earned/share/248a3d84-d8b2-4a21-8761-3b95133c8583" },
+  { title: "Google Cloud Data Analytics Certificate (5-course program)", issuer: "Google Skills", href: "https://drive.google.com/file/d/1yJBkarQEqbp1QVLulVImsJwCmJb9yoRJ/view?usp=sharing" },
+  { title: "Full Stack Web Development (Delta)", issuer: "Apna College", href: "https://drive.google.com/file/d/1Blx-eVgBAu3eiYkKL8PSN2GOYjFHyNcf/view?usp=sharing" },
 ];
 
 export const skills: { group: string; items: string[] }[] = [
@@ -168,8 +168,12 @@ export const skills: { group: string; items: string[] }[] = [
 ];
 
 export const patents = {
+  filed: 10,
+  areas: ["Cybersecurity", "AI/ML", "Healthcare informatics"],
   intro:
     "Co-inventor on 10 filed Indian patent applications at Vellore Institute of Technology, spanning cybersecurity, AI/ML and healthcare informatics.",
+  // TODO: only 3 of the 10 filings are listed. Add the others (title, application number, one-line
+  // detail) here and every patents view (desk panel, /dev section, /dev/patents) picks them up.
   items: [
     {
       title: "Hardware-integrated malicious-encryption detection",

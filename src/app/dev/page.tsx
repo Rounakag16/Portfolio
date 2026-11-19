@@ -4,7 +4,8 @@ import { Avatar } from "@/components/Avatar";
 import { Workshop } from "@/components/dev/Workshop";
 import { JsonLd, personSchema, profilePageSchema } from "@/components/JsonLd";
 import { site } from "@/content/site";
-import { about, achievements, certifications, education, experience, projects, skills, type Project } from "@/content/dev";
+import { PatentsSummary } from "@/components/dev/PatentsSummary";
+import { about, achievements, certifications, education, experience, patents, projects, skills, type Project } from "@/content/dev";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -62,9 +63,9 @@ export default function DevPage() {
       </Section>
 
       <Section id="projects" title="Featured projects">
-        <div data-reveal="group" className="space-y-8">
+        <ul data-reveal="group" className="grid items-start gap-6 md:grid-cols-2">
           {featured.map((p) => <FeaturedProject key={p.slug} project={p} />)}
-        </div>
+        </ul>
         <h3 className="mt-14 text-xl font-semibold">More projects</h3>
         <ul data-reveal="group" className="mt-5 grid gap-5 sm:grid-cols-2">
           {more.map((p) => <SmallProject key={p.slug} project={p} />)}
@@ -103,31 +104,47 @@ export default function DevPage() {
         </dl>
       </Section>
 
-      <Section id="education" title="Education and certifications">
-        <div className="grid gap-10 md:grid-cols-2">
-          <ul className="space-y-5">
-            {education.map((e) => (
-              <li key={e.school}>
-                <h3 className="font-semibold">{e.school}</h3>
-                <p className="text-sm text-charcoal-soft">{e.period}. {e.detail}</p>
-              </li>
-            ))}
-          </ul>
-          <ul className="space-y-3">
-            {certifications.map((c) => (
-              <li key={c.title}>
-                <a href={c.href} target="_blank" rel="noopener noreferrer" className="font-medium underline decoration-teal decoration-2 underline-offset-4 hover:text-teal-deep">
-                  {c.title}
-                </a>
-              </li>
-            ))}
-            <li>
-              <Link href="/dev/patents" className="font-medium underline decoration-teal decoration-2 underline-offset-4 hover:text-teal-deep">
-                Patent applications (co-inventor)
-              </Link>
+      <Section id="education" title="Education">
+        <ol data-reveal="group" className="grid gap-4 md:grid-cols-3">
+          {education.map((e, i) => (
+            <li key={e.school} className={`rounded-2xl p-5 ring-2 ${i === 0 ? "bg-white shadow-[4px_5px_0_var(--color-charcoal)] ring-charcoal" : "bg-white/60 ring-charcoal/10"}`}>
+              <p className="font-mono text-sm text-teal-deep">{e.period}</p>
+              <h3 className="mt-1 text-lg font-semibold leading-snug">{e.school}</h3>
+              <p className="mt-1 text-charcoal-soft">{e.detail}</p>
             </li>
-          </ul>
-        </div>
+          ))}
+        </ol>
+      </Section>
+
+      <Section id="certifications" title="Certifications">
+        <ul data-reveal="group" className="grid gap-4 md:grid-cols-3">
+          {certifications.map((c) => (
+            <li key={c.title} className="flex flex-col rounded-xl border-[5px] border-charcoal bg-white p-4">
+              <p className="text-xs font-semibold tracking-wide text-teal-deep uppercase">{c.issuer}{c.year && ` · ${c.year}`}</p>
+              <h3 className="mt-1.5 font-semibold leading-snug">{c.title}</h3>
+              <a href={c.href} target="_blank" rel="noopener noreferrer" className="mt-auto pt-3 text-sm font-semibold text-teal-deep underline underline-offset-4 hover:text-charcoal">
+                View credential<span className="sr-only">: {c.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section id="patents" title="Patents">
+        <PatentsSummary />
+        <ul data-reveal="group" className="mt-6 grid gap-4 md:grid-cols-3">
+          {patents.items.map((p) => (
+            <li key={p.number} className="flex flex-col rounded-2xl bg-white p-5 ring-2 ring-charcoal/10">
+              <p className="font-mono text-sm text-teal-deep">{p.number}</p>
+              <h3 className="mt-1 text-lg font-semibold leading-snug">{p.title}</h3>
+              <p className="mt-2 text-sm text-charcoal-soft">{p.detail}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-charcoal-soft">
+          {patents.outro}{" "}
+          <Link href="/dev/patents" className="font-semibold text-teal-deep underline underline-offset-4 hover:text-charcoal">All patent applications</Link>
+        </p>
       </Section>
 
       <Section id="achievements" title="Competitive programming">
@@ -203,31 +220,48 @@ function ProjectLinks({ project }: { project: Project }) {
   );
 }
 
+/** Compact card for a quick scan; the problem and highlights sit behind "Details". */
 function FeaturedProject({ project }: { project: Project }) {
+  const more = project.problem || project.highlights?.length;
   return (
-    <article className="grid gap-6 rounded-2xl bg-white p-5 shadow-[4px_5px_0_var(--color-charcoal)] ring-2 ring-charcoal sm:p-7 md:grid-cols-[1.1fr_1fr]">
-      <div>
-        <h3 className="text-2xl font-bold">{project.name}</h3>
-        <p className="mt-2 text-lg">{project.summary}</p>
-        {project.problem && <p className="mt-3 text-charcoal-soft">{project.problem}</p>}
-        {project.highlights && (
-          <ul className="mt-4 list-disc space-y-1.5 pl-5 marker:text-orange">
-            {project.highlights.map((h) => <li key={h}>{h}</li>)}
-          </ul>
-        )}
-        <p className="mt-4 text-sm text-charcoal-soft">Built with {project.stack.join(", ")}</p>
-        <div className="mt-4"><ProjectLinks project={project} /></div>
-      </div>
+    <li className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-[4px_5px_0_var(--color-charcoal)] ring-2 ring-charcoal">
       {project.image ? (
-        <div className="relative aspect-[16/10] self-start overflow-hidden rounded-xl bg-cream-deep ring-1 ring-charcoal/15">
-          <Image src={project.image} alt={`${project.name} screenshot`} fill sizes="(min-width: 768px) 420px, 100vw" className="object-cover object-top" />
+        <div className="relative aspect-[2/1] overflow-hidden border-b-2 border-charcoal bg-cream-deep">
+          <Image src={project.image} alt={`${project.name} screenshot`} fill sizes="(min-width: 768px) 480px, 100vw" className="object-cover object-top" />
         </div>
       ) : (
-        <div className="grid aspect-[16/10] self-start place-items-center rounded-xl bg-charcoal p-6 text-center font-heading text-cream/80">
+        <div className="grid aspect-[2/1] place-items-center border-b-2 border-charcoal bg-charcoal p-6 text-center font-heading text-cream/80">
           {project.code || project.live ? "Screenshot coming soon" : "Private client build, so there's no public screenshot"}
         </div>
       )}
-    </article>
+      <div className="flex flex-1 flex-col p-5">
+        <h3 className="text-xl font-bold">{project.name}</h3>
+        <p className="mt-1.5 text-charcoal-soft">{project.summary}</p>
+        <ul aria-label="Stack" className="mt-3 flex flex-wrap gap-1.5">
+          {project.stack.map((s) => (
+            <li key={s} className="rounded-md bg-cream-deep px-2 py-0.5 font-mono text-xs">{s}</li>
+          ))}
+        </ul>
+        <div className="mt-4"><ProjectLinks project={project} /></div>
+        {more && (
+          <details className="disclosure group mt-4 border-t border-charcoal/10 pt-3">
+            <summary className="press inline-flex cursor-pointer list-none items-center gap-2 rounded-full border-2 border-charcoal px-3.5 py-1 font-heading text-sm font-semibold hover:bg-charcoal hover:text-cream [&::-webkit-details-marker]:hidden">
+              <span className="group-open:hidden">Details</span>
+              <span className="hidden group-open:inline">Hide details</span>
+              <span className="sr-only">: {project.name}</span>
+            </summary>
+            <div className="pt-4">
+              {project.problem && <p className="text-charcoal-soft">{project.problem}</p>}
+              {project.highlights && (
+                <ul className="mt-3 list-disc space-y-1.5 pl-5 text-[0.95rem] marker:text-orange">
+                  {project.highlights.map((h) => <li key={h}>{h}</li>)}
+                </ul>
+              )}
+            </div>
+          </details>
+        )}
+      </div>
+    </li>
   );
 }
 

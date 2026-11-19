@@ -42,6 +42,7 @@ export const personSchema = {
   hasCredential: certifications.map((c) => ({
     "@type": "EducationalOccupationalCredential",
     name: c.title,
+    recognizedBy: { "@type": "Organization", name: c.issuer },
     url: c.href,
   })),
   sameAs,

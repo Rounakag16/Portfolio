@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useId, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { PatentsSummary } from "@/components/dev/PatentsSummary";
 import { site } from "@/content/site";
-import { about, achievements, certifications, education, experience, projects, skills, type Project } from "@/content/dev";
+import { about, achievements, certifications, education, experience, patents, projects, skills, type Project } from "@/content/dev";
 import { workshop } from "@/content/workshop";
 
 const linkClass = "font-semibold text-teal-deep underline underline-offset-4 hover:text-charcoal";
@@ -27,77 +28,130 @@ function ProjectLinks({ project, dark }: { project: Project; dark?: boolean }) {
   );
 }
 
-/** Laptop: featured projects as an editor with one file tab per project. */
+function StackChips({ stack, max }: { stack: string[]; max?: number }) {
+  const shown = max ? stack.slice(0, max) : stack;
+  const rest = stack.length - shown.length;
+  return (
+    <ul className="mt-3 flex flex-wrap gap-1.5">
+      {shown.map((s) => (
+        <li key={s} className="rounded bg-white/10 px-2 py-0.5 font-mono text-xs text-orange-200">{s}</li>
+      ))}
+      {rest > 0 && <li className="px-1 py-0.5 font-mono text-xs text-cream/60">+{rest} more</li>}
+    </ul>
+  );
+}
+
+function ProjectThumb({ project, sizes, className }: { project: Project; sizes: string; className: string }) {
+  return project.image ? (
+    <div className={`relative overflow-hidden bg-cream-deep ${className}`}>
+      <Image src={project.image} alt={`${project.name} screenshot`} fill sizes={sizes} className="object-cover object-top" />
+    </div>
+  ) : (
+    <div className={`grid place-items-center bg-white/5 p-4 text-center font-mono text-sm text-cream/60 ${className}`}>
+      {/* DeedTracker is a private client build, so there is no public screenshot. */}
+      private client build
+    </div>
+  );
+}
+
+/** Laptop: featured projects as compact cards; "Details" opens one project's full write-up in place. */
 export function ProjectsPanel() {
   const featured = projects.filter((p) => p.featured);
-  const [active, setActive] = useState(0);
-  const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [selected, setSelected] = useState<number | null>(null);
+  const detailsButtons = useRef<(HTMLButtonElement | null)[]>([]);
+  const detailHeading = useRef<HTMLHeadingElement>(null);
+  const returnTo = useRef<number | null>(null);
   const base = useId();
-  const p = featured[active];
 
-  function onKey(e: KeyboardEvent) {
-    const last = featured.length - 1;
-    const next = e.key === "ArrowRight" ? (active === last ? 0 : active + 1)
-      : e.key === "ArrowLeft" ? (active === 0 ? last : active - 1)
-      : e.key === "Home" ? 0 : e.key === "End" ? last : null;
-    if (next === null) return;
-    e.preventDefault();
-    setActive(next);
-    tabs.current[next]?.focus();
+  // Move focus with the view: into the write-up when it opens, back to its Details button when it closes.
+  useEffect(() => {
+    if (selected !== null) detailHeading.current?.focus();
+    else if (returnTo.current !== null) detailsButtons.current[returnTo.current]?.focus();
+  }, [selected]);
+
+  if (selected !== null) {
+    const p = featured[selected];
+    return (
+      <div className="overflow-hidden rounded-xl bg-charcoal text-cream ring-1 ring-charcoal">
+        <div className="flex items-center justify-between gap-4 bg-[#0f0d0c] px-4 py-2 font-mono text-sm">
+          <span className="text-cream/70">{p.slug}.md</span>
+          <button
+            type="button"
+            onClick={() => { returnTo.current = selected; setSelected(null); }}
+            className="press rounded-md px-2 py-1 text-teal hover:bg-white/10 hover:text-cream"
+          >
+            Back to all projects
+          </button>
+        </div>
+        <div className="grid gap-6 p-6 md:grid-cols-[1.25fr_1fr]">
+          <div>
+            <h3 ref={detailHeading} tabIndex={-1} className="text-2xl font-bold focus:outline-none">
+              <span aria-hidden className="mr-2 font-mono text-orange">#</span>{p.name}
+            </h3>
+            <p className="mt-3 text-lg text-cream/90">{p.summary}</p>
+            {p.problem && (
+              <>
+                <h4 className="mt-5 font-mono text-sm text-teal">## the problem</h4>
+                <p className="mt-1 text-cream/75">{p.problem}</p>
+              </>
+            )}
+            {p.highlights && (
+              <>
+                <h4 className="mt-5 font-mono text-sm text-teal">## what I built</h4>
+                <ul className="mt-2 space-y-2 text-cream/80">
+                  {p.highlights.map((h) => (
+                    <li key={h} className="flex gap-3">
+                      <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-orange" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </div>
+          <div className="space-y-5 self-start">
+            <ProjectThumb project={p} sizes="360px" className="aspect-[16/10] rounded-lg ring-1 ring-white/15" />
+            <div>
+              <h4 className="font-mono text-sm text-teal">## stack</h4>
+              <StackChips stack={p.stack} />
+            </div>
+            <ProjectLinks project={p} dark />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="overflow-hidden rounded-xl bg-charcoal text-cream ring-1 ring-charcoal">
-      <div role="tablist" aria-label="Featured projects" className="flex overflow-x-auto bg-[#0f0d0c] font-mono text-sm" onKeyDown={onKey}>
-        {featured.map((f, i) => (
-          <button
-            key={f.slug}
-            ref={(el) => { tabs.current[i] = el; }}
-            role="tab"
-            id={`${base}-tab-${i}`}
-            aria-selected={i === active}
-            aria-controls={`${base}-panel`}
-            tabIndex={i === active ? 0 : -1}
-            onClick={() => setActive(i)}
-            className={`shrink-0 border-r border-white/10 px-4 py-2.5 transition-colors ${
-              i === active ? "border-t-2 border-t-orange bg-charcoal text-cream" : "border-t-2 border-t-transparent text-cream/60 hover:text-cream"
-            }`}
-          >
-            {f.slug}.md
-          </button>
+    <div>
+      <p className="text-charcoal-soft">{workshop.projectsIntro}</p>
+      <ul className="mt-5 grid gap-5 sm:grid-cols-2">
+        {featured.map((p, i) => (
+          <li key={p.slug} className="flex flex-col overflow-hidden rounded-xl bg-charcoal text-cream ring-1 ring-charcoal">
+            <p aria-hidden className="bg-[#0f0d0c] px-4 py-1.5 font-mono text-xs text-cream/60">{p.slug}.md</p>
+            <ProjectThumb project={p} sizes="420px" className="h-32" />
+            <div className="flex flex-1 flex-col p-4">
+              <h3 id={`${base}-${p.slug}`} className="text-lg font-bold">{p.name}</h3>
+              <p className="mt-1 line-clamp-2 text-sm text-cream/80">{p.summary}</p>
+              <StackChips stack={p.stack} max={4} />
+              <div className="mt-auto flex items-center justify-between gap-3 pt-4">
+                <ProjectLinks project={p} dark />
+                <button
+                  type="button"
+                  ref={(el) => { detailsButtons.current[i] = el; }}
+                  onClick={() => setSelected(i)}
+                  aria-describedby={`${base}-${p.slug}`}
+                  className="press shrink-0 rounded-full bg-orange px-3.5 py-1.5 font-heading text-sm font-semibold text-charcoal hover:bg-orange-200"
+                >
+                  Details
+                </button>
+              </div>
+            </div>
+          </li>
         ))}
-      </div>
-      <div role="tabpanel" id={`${base}-panel`} aria-labelledby={`${base}-tab-${active}`} tabIndex={0} className="grid gap-6 p-6 md:grid-cols-[1.15fr_1fr]">
-        <div>
-          <h3 className="text-2xl font-bold"><span aria-hidden className="mr-2 font-mono text-orange">#</span>{p.name}</h3>
-          <p className="mt-3 text-lg text-cream/90">{p.summary}</p>
-          {p.problem && (
-            <>
-              <h4 className="mt-5 font-mono text-sm text-teal">## the problem</h4>
-              <p className="mt-1 text-cream/75">{p.problem}</p>
-            </>
-          )}
-          <h4 className="mt-5 font-mono text-sm text-teal">## stack</h4>
-          <ul className="mt-2 flex flex-wrap gap-2">
-            {p.stack.map((s) => (
-              <li key={s} className="rounded bg-white/10 px-2 py-0.5 font-mono text-sm text-orange-200">{s}</li>
-            ))}
-          </ul>
-          <div className="mt-5"><ProjectLinks project={p} dark /></div>
-        </div>
-        {p.image ? (
-          <div className="relative aspect-[16/10] self-start overflow-hidden rounded-lg bg-cream-deep ring-1 ring-white/15">
-            <Image src={p.image} alt={`${p.name} screenshot`} fill sizes="380px" className="object-cover object-top" />
-          </div>
-        ) : (
-          <div className="grid aspect-[16/10] self-start place-items-center rounded-lg border border-dashed border-white/20 p-6 text-center font-mono text-sm text-cream/60">
-            {/* DeedTracker is a private client build, so there is no public screenshot. */}
-            private client build
-          </div>
-        )}
-      </div>
-      <p className="border-t border-white/10 px-6 py-3 text-sm text-cream/60">
-        More projects are in the <a href="#projects" data-close className="text-teal underline underline-offset-4 hover:text-cream">full project list</a>.
+      </ul>
+      <p className="mt-5 text-sm text-charcoal-soft">
+        More projects are in the <a href="#projects" data-close className={linkClass}>full project list</a>.
       </p>
     </div>
   );
@@ -146,39 +200,71 @@ export function SkillsPanel() {
   );
 }
 
-/** Framed certificates: education, certifications, patents and competitive programming. */
+/** Graduation cap: education as a short timeline, most recent first. */
 export function EducationPanel() {
+  return (
+    <ol className="relative space-y-5 before:absolute before:top-4 before:bottom-4 before:left-[11px] before:w-0.5 before:bg-charcoal/15">
+      {education.map((e, i) => (
+        <li key={e.school} className="relative pl-10">
+          <span aria-hidden className={`absolute top-5 left-0 h-6 w-6 rounded-full ring-2 ring-charcoal ${i === 0 ? "bg-orange" : "bg-cream-deep"}`} />
+          <div className={`rounded-2xl p-5 ring-2 ${i === 0 ? "bg-white shadow-[4px_5px_0_var(--color-charcoal)] ring-charcoal" : "bg-white/60 ring-charcoal/10"}`}>
+            <p className="font-mono text-sm text-teal-deep">{e.period}</p>
+            <h3 className="mt-1 text-lg font-semibold leading-snug">{e.school}</h3>
+            <p className="mt-1 text-charcoal-soft">{e.detail}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+/** Framed certificates: certifications, then competitive programming. */
+export function CertificationsPanel() {
   return (
     <div className="space-y-8">
       <ul className="grid gap-4 sm:grid-cols-3">
-        {education.map((e) => (
-          <li key={e.school} className="rounded-lg border-[6px] border-charcoal bg-white p-4">
-            <h3 className="font-semibold leading-snug">{e.school}</h3>
-            <p className="mt-1 text-sm text-charcoal-soft">{e.period}</p>
-            <p className="mt-1 text-sm">{e.detail}</p>
+        {certifications.map((c) => (
+          <li key={c.title} className="flex flex-col rounded-xl border-[5px] border-charcoal bg-white p-4">
+            <p className="text-xs font-semibold tracking-wide text-teal-deep uppercase">{c.issuer}{c.year && ` · ${c.year}`}</p>
+            <h3 className="mt-1.5 font-semibold leading-snug">{c.title}</h3>
+            <a href={c.href} target="_blank" rel="noopener noreferrer" className={`mt-auto pt-3 text-sm ${linkClass}`}>
+              View credential<span className="sr-only">: {c.title}</span>
+            </a>
           </li>
         ))}
       </ul>
       <div>
-        <h3 className="font-heading text-lg font-semibold">Certifications and patents</h3>
-        <ul className="mt-3 space-y-2">
-          {certifications.map((c) => (
-            <li key={c.title}><a href={c.href} target="_blank" rel="noopener noreferrer" className={linkClass}>{c.title}</a></li>
-          ))}
-          <li><Link href="/dev/patents" className={linkClass}>Patent applications (co-inventor)</Link></li>
-        </ul>
-      </div>
-      <div>
         <h3 className="font-heading text-lg font-semibold">Competitive programming</h3>
         <ul className="mt-3 grid gap-3 sm:grid-cols-2">
           {achievements.map((a) => (
-            <li key={a.title} className="rounded-lg bg-cream p-3 ring-1 ring-charcoal/10">
+            <li key={a.title} className="rounded-lg bg-white p-3 ring-1 ring-charcoal/10">
               <p className="font-semibold">{a.title}</p>
               <p className="text-sm text-charcoal-soft">{a.detail}</p>
             </li>
           ))}
         </ul>
       </div>
+    </div>
+  );
+}
+
+/** Patent folder: the filings, led by the count and the fields they cover. */
+export function PatentsPanel() {
+  return (
+    <div className="space-y-6">
+      <PatentsSummary />
+      <ul className="space-y-4">
+        {patents.items.map((p) => (
+          <li key={p.number} className="rounded-2xl bg-white p-5 ring-2 ring-charcoal/10">
+            <p className="font-mono text-sm text-teal-deep">{p.number}</p>
+            <h3 className="mt-1 text-lg font-semibold leading-snug">{p.title}</h3>
+            <p className="mt-2 text-charcoal-soft">{p.detail}</p>
+          </li>
+        ))}
+      </ul>
+      <p className="text-sm text-charcoal-soft">
+        {patents.outro} <Link href="/dev/patents" className={linkClass}>All patent applications</Link>
+      </p>
     </div>
   );
 }

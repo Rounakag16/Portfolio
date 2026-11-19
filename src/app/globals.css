@@ -57,6 +57,16 @@
     outline-offset: 3px;
     border-radius: 4px;
   }
+  /* Scrollbars in the site's palette instead of the OS default: thin, charcoal on cream. */
+  html {
+    scrollbar-color: color-mix(in srgb, var(--color-charcoal) 55%, transparent) var(--color-cream-deep);
+  }
+  * {
+    scrollbar-width: thin;
+  }
+  body * {
+    scrollbar-color: color-mix(in srgb, var(--color-charcoal) 40%, transparent) transparent;
+  }
   ::selection {
     background: var(--color-orange);
     color: var(--color-charcoal);
@@ -221,10 +231,12 @@
 }
 
 /* FAQ: the answer grows open instead of snapping. Browsers without ::details-content simply snap. */
-details.faq {
+details.faq,
+details.disclosure {
   interpolate-size: allow-keywords;
 }
-details.faq::details-content {
+details.faq::details-content,
+details.disclosure::details-content {
   block-size: 0;
   opacity: 0;
   overflow: hidden;
@@ -233,7 +245,8 @@ details.faq::details-content {
     opacity 250ms var(--ease-out),
     content-visibility 250ms allow-discrete;
 }
-details.faq[open]::details-content {
+details.faq[open]::details-content,
+details.disclosure[open]::details-content {
   block-size: auto;
   opacity: 1;
 }

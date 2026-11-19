@@ -203,3 +203,50 @@ export function PenArt({ className }: ArtProps) {
     </svg>
   );
 }
+
+export function GradCapArt({ className }: ArtProps) {
+  return (
+    <svg viewBox="0 0 200 180" className={className} {...svgProps}>
+      {/* rolled diploma under the cap */}
+      <g transform="rotate(-14 100 130)">
+        <rect x="22" y="112" width="156" height="38" rx="19" fill={cream} stroke={ink} strokeWidth="3" />
+        <ellipse cx="160" cy="131" rx="10" ry="19" fill={creamDeep} stroke={ink} strokeWidth="2.5" />
+        <rect x="86" y="110" width="18" height="42" fill={orange} stroke={ink} strokeWidth="2.5" />
+      </g>
+      {/* mortarboard, seen from above */}
+      <path d="M100 8l78 44-78 44-78-44z" fill={ink} />
+      <path d="M100 18l62 34-62 34-62-34z" fill="#292524" />
+      <path d="M100 52l58 26" stroke={teal} strokeWidth="4" strokeLinecap="round" />
+      <rect x="152" y="74" width="12" height="30" rx="4" fill={teal} stroke={ink} strokeWidth="2" />
+      <circle cx="100" cy="52" r="7" fill={orange} stroke={ink} strokeWidth="2" />
+    </svg>
+  );
+}
+
+export function PatentArt({ className }: ArtProps) {
+  return (
+    <svg viewBox="0 0 210 220" className={className} {...svgProps}>
+      {/* folder */}
+      <path d="M8 40h62l12 14h120v158H8z" fill={orangeLight} stroke={ink} strokeWidth="3" strokeLinejoin="round" />
+      {/* filings fanned out of the folder */}
+      <rect x="40" y="18" width="128" height="170" rx="4" fill={creamDeep} stroke={ink} strokeWidth="2.5" transform="rotate(8 104 103)" />
+      <rect x="34" y="14" width="128" height="172" rx="4" fill="#fff" stroke={ink} strokeWidth="3" transform="rotate(-3 98 100)" />
+      <g transform="rotate(-3 98 100)">
+        <rect x="34" y="14" width="128" height="26" rx="4" fill={tealDeep} stroke={ink} strokeWidth="3" />
+        <text x="98" y="32" textAnchor="middle" fontFamily="ui-sans-serif, system-ui" fontSize="12" fontWeight="800" letterSpacing="2" fill="#fff">PATENT</text>
+        {[52, 63, 74, 85].map((y, i) => (
+          <rect key={y} x="48" y={y} width={[96, 80, 88, 56][i]} height="5" rx="2.5" fill={inkSoft} opacity="0.45" />
+        ))}
+        {/* seal and ribbons */}
+        <path d="M120 116l-8 30 11-6 8 9 3-30z" fill={orange} stroke={ink} strokeWidth="2" />
+        <path d="M136 116l8 30-11-6-8 9-3-30z" fill={orangeDeep} stroke={ink} strokeWidth="2" />
+        <circle cx="128" cy="114" r="17" fill={orange} stroke={ink} strokeWidth="2.5" />
+        <circle cx="128" cy="114" r="10" fill="none" stroke={ink} strokeWidth="1.5" strokeDasharray="3 2.5" />
+      </g>
+      {/* folder front flap */}
+      <path d="M8 150h194v62H8z" fill={orange} stroke={ink} strokeWidth="3" strokeLinejoin="round" />
+      <rect x="22" y="164" width="70" height="20" rx="3" fill="#fff" stroke={ink} strokeWidth="2" />
+      <rect x="30" y="171" width="44" height="5" rx="2.5" fill={ink} />
+    </svg>
+  );
+}
