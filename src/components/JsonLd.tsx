@@ -23,7 +23,11 @@ export const personSchema = {
   "@type": "Person",
   "@id": personId,
   name: site.name,
+  givenName: "Rounak",
+  familyName: "Agarwal",
+  alternateName: [site.shortName, `@${site.x.handle}`, `@${site.instagramBusiness.handle}`],
   url: site.url,
+  mainEntityOfPage: `${site.url}/dev`,
   image: `${site.url}/avatar/head.png`,
   jobTitle: "Full-Stack Developer",
   description:
@@ -41,6 +45,22 @@ export const personSchema = {
     url: c.href,
   })),
   sameAs,
+};
+
+/**
+ * The site itself. Google reads `name` / `alternateName` here for the site name shown in results,
+ * so "Rounak" and "rounak.tech" both resolve to this site.
+ */
+export const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${site.url}/#website`,
+  url: site.url,
+  name: site.shortName,
+  alternateName: [site.name, "rounak.tech"],
+  inLanguage: "en-IN",
+  publisher: { "@id": personId },
+  about: { "@id": personId },
 };
 
 /** /dev is a profile page about the Person above (Google's ProfilePage structured data). */

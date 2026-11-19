@@ -26,7 +26,7 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/agarwalrounak16/",
   leetcode: "https://leetcode.com/u/RounakAg/",
   codechef: "https://www.codechef.com/users/rounak_16",
-  x: "https://x.com/RounakOff",
+  x: { handle: "RounakOff", url: "https://x.com/RounakOff" },
   devto: { username: "rounakag", url: "https://dev.to/rounakag" },
 
   /** Resume on Google Drive (shared as "anyone with the link"). Replace the file in Drive to update it; the link stays the same. */
@@ -52,13 +52,18 @@ export function whatsappLink(message: string = site.whatsappGreeting): string | 
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
-/** Profiles listed in the Person structured data (helps name searches). */
+/**
+ * Every profile that belongs to Rounak. Listed in the Person structured data and linked with rel="me",
+ * so search engines can tie them to this site and show them for name searches.
+ * Each profile should link back to rounak.tech (bio or website field) to close the loop.
+ */
 export const sameAs = [
-  site.github,
   site.linkedin,
+  site.github,
+  site.x.url,
+  site.instagramPersonal.url,
+  site.instagramBusiness.url,
+  site.devto.url,
   site.leetcode,
   site.codechef,
-  site.x,
-  site.instagramPersonal.url,
-  site.devto.url,
 ];

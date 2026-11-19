@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Avatar } from "@/components/Avatar";
-import { JsonLd, faqSchema, personSchema, serviceSchema } from "@/components/JsonLd";
+import { JsonLd, faqSchema, personSchema, serviceSchema, websiteSchema } from "@/components/JsonLd";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BeforeAfter } from "@/components/client/BeforeAfter";
 import { ChatHeading } from "@/components/client/ChatHeading";
@@ -25,6 +25,7 @@ const container = "mx-auto max-w-6xl px-4 sm:px-6";
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={websiteSchema} />
       <JsonLd data={personSchema} />
       <JsonLd data={serviceSchema} />
       <JsonLd data={faqSchema} />

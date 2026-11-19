@@ -37,6 +37,13 @@ export function pageMetadata({ title, description, path, absoluteTitle, type = "
       locale: "en_IN",
       images: [image],
     },
-    twitter: { card: "summary_large_image", title: fullTitle, description, images: [image] },
+    twitter: {
+      card: "summary_large_image",
+      site: `@${site.x.handle}`,
+      creator: `@${site.x.handle}`,
+      title: fullTitle,
+      description,
+      images: [image],
+    },
   };
 }

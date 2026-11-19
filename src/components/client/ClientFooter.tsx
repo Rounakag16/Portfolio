@@ -12,7 +12,7 @@ export function ClientFooter() {
         </div>
         <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
           <li>
-            <a href={site.instagramBusiness.url} target="_blank" rel="noopener noreferrer" data-track="contact_click" data-track-label="instagram" className="hover:text-orange">
+            <a href={site.instagramBusiness.url} target="_blank" rel="me noopener" data-track="contact_click" data-track-label="instagram" className="hover:text-orange">
               Instagram @{site.instagramBusiness.handle}
             </a>
           </li>
