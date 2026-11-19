@@ -1,0 +1,9 @@
+# rounak.tech on Netlify (project "rounakagportfolio"), built from the main branch on GitHub.
+# Netlify detects Next.js and adds its Next.js runtime automatically; don't pin it.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # Next.js 16 needs Node 20.9 or newer.
+  NODE_VERSION = "22"

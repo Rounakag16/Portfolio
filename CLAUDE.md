@@ -14,10 +14,10 @@ The full design brief is in the claude.ai project "Freelance Rounak" (`claude/we
 
 ## Stack and commands
 
-- Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS 4. Deploys to Vercel.
+- Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS 4. Deploys to Netlify: project `rounakagportfolio` builds every push to `main` on GitHub (`netlify.toml`), and `rounak.tech` is attached there, so DNS needs no changes. A failed build leaves the previous deploy live.
 - `npm run dev` for local dev, `npm run build` for a production build (run it before calling a change done), `npm run typecheck` for types only.
 - Fonts are self-hosted with Fontsource (Poppins for headings, Inter for body). Don't switch to `next/font/google`.
-- Analytics: `@vercel/analytics`. Forms: Formspree (contact) and Tally (`/apply`).
+- Analytics: `@vercel/analytics`, rendered only when `process.env.VERCEL` is set (it 404s elsewhere), so it is off on Netlify. Forms: Formspree (contact) and Tally (`/apply`).
 - Next 16 specifics: route `params` are a Promise (`const { slug } = await params`), and `next lint` no longer exists.
 
 ## Layout

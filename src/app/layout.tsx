@@ -28,7 +28,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased">
         {children}
         <RevealObserver />
-        <Analytics />
+        {/* Vercel Analytics only works on Vercel; on Netlify its script would 404 on every page. */}
+        {process.env.VERCEL && <Analytics />}
       </body>
     </html>
   );
