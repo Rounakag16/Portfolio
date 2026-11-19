@@ -70,7 +70,7 @@ export default function HomePage() {
                       Read the case study<span className="sr-only">: {c.title}</span>
                     </Link>
                     {c.demoLive && c.demoUrl && (
-                      <a href={c.demoUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-orange decoration-2 underline-offset-4 hover:text-orange-deep">
+                      <a href={c.demoUrl} target="_blank" rel="noopener noreferrer" data-track="project_click" data-track-label={`${c.slug}-demo`} className="underline decoration-orange decoration-2 underline-offset-4 hover:text-orange-deep">
                         Open the live demo<span className="sr-only">: {c.title}</span>
                       </a>
                     )}
@@ -132,7 +132,7 @@ export default function HomePage() {
               Run a small business on Instagram? Apply, and each month I pick one business and build its website at no cost.
             </p>
           </div>
-          <Link href="/apply" className="press justify-self-start rounded-full bg-charcoal px-7 py-3.5 font-heading font-semibold text-cream hover:-translate-y-0.5 hover:bg-charcoal-soft md:justify-self-end">
+          <Link href="/apply" data-track="apply_click" data-track-label="home-free-build" className="press justify-self-start rounded-full bg-charcoal px-7 py-3.5 font-heading font-semibold text-cream hover:-translate-y-0.5 hover:bg-charcoal-soft md:justify-self-end">
             Apply
           </Link>
         </div>
@@ -232,7 +232,7 @@ export default function HomePage() {
                 <span className="text-sm font-medium">What do you need?</span>
                 <textarea name="message" required rows={3} className="mt-1 w-full rounded-lg border border-charcoal/20 bg-white px-3 py-2" />
               </label>
-              <button type="submit" className="press inline-flex items-center gap-2 rounded-full bg-charcoal px-5 py-2.5 font-heading font-semibold text-cream hover:bg-charcoal-soft">
+              <button type="submit" data-track="contact_click" data-track-label="home-form" className="press inline-flex items-center gap-2 rounded-full bg-charcoal px-5 py-2.5 font-heading font-semibold text-cream hover:bg-charcoal-soft">
                 Send message
               </button>
             </form>

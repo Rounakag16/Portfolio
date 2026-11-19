@@ -19,10 +19,10 @@ export function DevNav() {
           ))}
         </ul>
         <div className="ml-auto flex items-center gap-3">
-          <a href={site.github} target="_blank" rel="noopener noreferrer" className="hidden text-sm font-medium hover:text-teal-deep sm:inline">
+          <a href={site.github} target="_blank" rel="noopener noreferrer" data-track="contact_click" data-track-label="github" className="hidden text-sm font-medium hover:text-teal-deep sm:inline">
             GitHub
           </a>
-          <a href={site.resumeUrl} target="_blank" rel="noopener noreferrer" className="press rounded-full bg-charcoal px-4 py-2 text-sm font-semibold text-cream hover:bg-charcoal-soft">
+          <a href={site.resumeUrl} target="_blank" rel="noopener noreferrer" data-track="resume_click" data-track-label="nav" className="press rounded-full bg-charcoal px-4 py-2 text-sm font-semibold text-cream hover:bg-charcoal-soft">
             Resume
           </a>
         </div>

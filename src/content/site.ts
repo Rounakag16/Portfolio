@@ -32,6 +32,9 @@ export const site = {
   /** Resume on Google Drive (shared as "anyone with the link"). Replace the file in Drive to update it; the link stays the same. */
   resumeUrl: "https://drive.google.com/file/d/1WYF-PS1QWcyTARXp-tPBglW8T_qC_0KW/view?usp=drive_link",
 
+  /** Google Analytics 4 web stream for rounak.tech (property "rounak.tech"). Set to "" to turn analytics off. */
+  gaMeasurementId: "G-9P1PYCEY1M",
+
   /** Existing Formspree form from the old site. */
   formspreeAction: "https://formspree.io/f/meozzqze",
 

@@ -53,7 +53,7 @@ export default async function CaseStudyPage({ params }: Params) {
           <div className="flex flex-wrap items-center gap-5">
             <WhatsAppButton label="Get one for your business" />
             {study.demoLive && study.demoUrl ? (
-              <a href={study.demoUrl} target="_blank" rel="noopener noreferrer" className="font-semibold underline decoration-orange decoration-2 underline-offset-4">
+              <a href={study.demoUrl} target="_blank" rel="noopener noreferrer" data-track="project_click" data-track-label={`${study.slug}-demo`} className="font-semibold underline decoration-orange decoration-2 underline-offset-4">
                 Open the live demo
               </a>
             ) : (

@@ -14,12 +14,12 @@ function ProjectLinks({ project, dark }: { project: Project; dark?: boolean }) {
   return (
     <div className="flex flex-wrap gap-4 text-sm">
       {project.live && (
-        <a href={project.live} target="_blank" rel="noopener noreferrer" className={cls}>
+        <a href={project.live} target="_blank" rel="noopener noreferrer" data-track="project_click" data-track-label={`${project.slug}-live`} className={cls}>
           Live site<span className="sr-only">: {project.name}</span>
         </a>
       )}
       {project.code && (
-        <a href={project.code} target="_blank" rel="noopener noreferrer" className={cls}>
+        <a href={project.code} target="_blank" rel="noopener noreferrer" data-track="project_click" data-track-label={`${project.slug}-code`} className={cls}>
           Code<span className="sr-only">: {project.name}</span>
         </a>
       )}
@@ -198,6 +198,8 @@ export function ContactPanel() {
           <li key={i.label}>
             <a
               href={i.href}
+              data-track="contact_click"
+              data-track-label={i.label.toLowerCase()}
               {...(i.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="flex items-center justify-between gap-4 rounded-2xl rounded-bl-sm bg-white px-4 py-3 ring-1 ring-charcoal/15 hover:ring-charcoal"
             >

@@ -36,16 +36,16 @@ export default function DevPage() {
           <h1 className="mt-3 text-4xl font-bold sm:text-5xl">{site.name}</h1>
           <p className="mt-3 text-xl text-charcoal-soft">Full-stack developer, MERN and AI. IT undergraduate at VIT Vellore.</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href={site.resumeUrl} target="_blank" rel="noopener noreferrer" className="rounded-full bg-orange px-5 py-3 font-heading font-semibold text-charcoal shadow-[0_3px_0_var(--color-charcoal)] press hover:-translate-y-0.5">
+            <a href={site.resumeUrl} target="_blank" rel="noopener noreferrer" data-track="resume_click" data-track-label="dev-hero" className="rounded-full bg-orange px-5 py-3 font-heading font-semibold text-charcoal shadow-[0_3px_0_var(--color-charcoal)] press hover:-translate-y-0.5">
               View resume
             </a>
-            <a href={site.github} target="_blank" rel="noopener noreferrer" className="press rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
+            <a href={site.github} target="_blank" rel="noopener noreferrer" data-track="contact_click" data-track-label="github" className="press rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
               GitHub
             </a>
-            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="press rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" data-track="contact_click" data-track-label="linkedin" className="press rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
               LinkedIn
             </a>
-            <a href={`mailto:${site.email}`} className="press rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
+            <a href={`mailto:${site.email}`} data-track="contact_click" data-track-label="email" className="press rounded-full border-2 border-charcoal px-5 py-2.5 font-heading font-semibold hover:bg-charcoal hover:text-cream">
               Email
             </a>
           </div>
@@ -146,9 +146,9 @@ export default function DevPage() {
           <div className="space-y-3">
             <p className="max-w-[48ch]">Email is the quickest way to reach me.</p>
             <ul className="space-y-2 font-medium">
-              <li><a href={`mailto:${site.email}`} className="underline underline-offset-4 hover:text-teal-deep">{site.email}</a></li>
-              <li><a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-teal-deep">LinkedIn</a></li>
-              <li><a href={site.github} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-teal-deep">GitHub</a></li>
+              <li><a href={`mailto:${site.email}`} data-track="contact_click" data-track-label="email" className="underline underline-offset-4 hover:text-teal-deep">{site.email}</a></li>
+              <li><a href={site.linkedin} target="_blank" rel="noopener noreferrer" data-track="contact_click" data-track-label="linkedin" className="underline underline-offset-4 hover:text-teal-deep">LinkedIn</a></li>
+              <li><a href={site.github} target="_blank" rel="noopener noreferrer" data-track="contact_click" data-track-label="github" className="underline underline-offset-4 hover:text-teal-deep">GitHub</a></li>
             </ul>
           </div>
           <form action={site.formspreeAction} method="post" className="space-y-3">
@@ -165,7 +165,7 @@ export default function DevPage() {
               <span className="text-sm font-medium">Message</span>
               <textarea name="message" required rows={4} className="mt-1 w-full rounded-lg border border-charcoal/20 bg-white px-3 py-2" />
             </label>
-            <button type="submit" className="press rounded-full bg-charcoal px-5 py-2.5 font-heading font-semibold text-cream hover:bg-charcoal-soft">
+            <button type="submit" data-track="contact_click" data-track-label="dev-form" className="press rounded-full bg-charcoal px-5 py-2.5 font-heading font-semibold text-cream hover:bg-charcoal-soft">
               Send message
             </button>
           </form>
@@ -190,12 +190,12 @@ function ProjectLinks({ project }: { project: Project }) {
   return (
     <div className="flex flex-wrap gap-4 text-sm font-semibold">
       {project.live && (
-        <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-teal-deep underline underline-offset-4">
+        <a href={project.live} target="_blank" rel="noopener noreferrer" data-track="project_click" data-track-label={`${project.slug}-live`} className="text-teal-deep underline underline-offset-4">
           Live site<span className="sr-only">: {project.name}</span>
         </a>
       )}
       {project.code && (
-        <a href={project.code} target="_blank" rel="noopener noreferrer" className="text-teal-deep underline underline-offset-4">
+        <a href={project.code} target="_blank" rel="noopener noreferrer" data-track="project_click" data-track-label={`${project.slug}-code`} className="text-teal-deep underline underline-offset-4">
           Code<span className="sr-only">: {project.name}</span>
         </a>
       )}

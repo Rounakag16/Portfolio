@@ -7,6 +7,7 @@ import "@fontsource-variable/inter/wght.css";
 import "./globals.css";
 import { site } from "@/content/site";
 import { RevealObserver } from "@/components/RevealObserver";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased">
         {children}
         <RevealObserver />
+        <GoogleAnalytics />
         {/* Vercel Analytics only works on Vercel; on Netlify its script would 404 on every page. */}
         {process.env.VERCEL && <Analytics />}
       </body>

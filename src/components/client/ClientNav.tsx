@@ -29,6 +29,8 @@ export function ClientNav() {
           </Link>
           <a
             href={wa ?? "/#contact"}
+            data-track="contact_click"
+            data-track-label={wa ? "nav-whatsapp" : "nav-contact"}
             {...(wa ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             className="press inline-flex items-center gap-2 rounded-full bg-charcoal px-4 py-2 text-sm font-semibold text-cream hover:bg-charcoal-soft"
           >

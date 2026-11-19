@@ -12,12 +12,12 @@ export function ClientFooter() {
         </div>
         <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
           <li>
-            <a href={site.instagramBusiness.url} target="_blank" rel="noopener noreferrer" className="hover:text-orange">
+            <a href={site.instagramBusiness.url} target="_blank" rel="noopener noreferrer" data-track="contact_click" data-track-label="instagram" className="hover:text-orange">
               Instagram @{site.instagramBusiness.handle}
             </a>
           </li>
-          <li><a href={`mailto:${site.email}`} className="hover:text-orange">{site.email}</a></li>
-          <li><Link href="/apply" className="hover:text-orange">Free build</Link></li>
+          <li><a href={`mailto:${site.email}`} data-track="contact_click" data-track-label="email" className="hover:text-orange">{site.email}</a></li>
+          <li><Link href="/apply" data-track="apply_click" data-track-label="footer" className="hover:text-orange">Free build</Link></li>
           <li><Link href="/dev" className="hover:text-orange">For recruiters</Link></li>
         </ul>
       </div>

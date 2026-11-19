@@ -22,6 +22,8 @@ export function WhatsAppButton({ label = "Chat on WhatsApp", message, className 
   return (
     <a
       href={href ?? "/#contact"}
+      data-track="contact_click"
+      data-track-label={href ? "whatsapp" : "contact-fallback"}
       {...(href ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={`inline-flex items-center justify-center gap-2 rounded-full bg-orange px-6 py-3 font-heading font-semibold text-charcoal shadow-[0_3px_0_var(--color-charcoal)] press hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-none ${className}`}
     >
