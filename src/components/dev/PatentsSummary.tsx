@@ -5,8 +5,8 @@ export function PatentsSummary() {
   return (
     <div className="flex flex-col gap-5 rounded-2xl bg-charcoal p-6 text-cream sm:flex-row sm:items-center">
       <p className="flex shrink-0 items-baseline gap-2">
-        <span className="font-heading text-5xl font-bold text-orange">{patents.filed}</span>
-        <span className="font-heading text-lg leading-tight font-semibold">filed<br />applications</span>
+        <span className="font-heading text-5xl font-bold text-orange">{patents.count}</span>
+        <span className="font-heading text-lg leading-tight font-semibold">published<br />applications</span>
       </p>
       <div className="sm:border-l sm:border-white/15 sm:pl-6">
         <p className="text-cream/85">{patents.intro}</p>

@@ -117,7 +117,7 @@ export const projects: Project[] = [
 export const about = [
   "I'm Rounak, an IT undergraduate at VIT Vellore building full-stack web applications that are secure, scalable and pleasant to use. Most of my work is in the MERN stack: clean REST APIs, sensible authentication and access control, and real-time features.",
   "Competitive programming shapes how I think about a problem before I write code: I'm 3-star on CodeChef with a DSA rating of 1918, and I've solved 300+ problems on LeetCode. I'm a Google Cloud Certified Associate Data Practitioner with hands-on BigQuery and Cloud Storage experience, and lately I've been building RAG pipelines and LLM agents.",
-  "I'm also a co-inventor on Indian patent applications spanning cybersecurity, AI/ML and healthcare informatics.",
+  "I'm also a co-inventor on published Indian patent applications spanning cybersecurity, AI/ML and healthcare informatics.",
 ];
 
 export const experience = [
@@ -140,7 +140,7 @@ export const experience = [
 
 export const education = [
   { school: "Vellore Institute of Technology (VIT), Vellore", period: "2023 – 2027", detail: "B.Tech in Information Technology, CGPA 9.04 / 10" },
-  { school: "Delhi Public School, Siliguri", period: "2020 – 2022", detail: "Class XII, 84%" },
+  { school: "Delhi Public School, Siliguri", period: "2020 – 2022", detail: "Class XII, 81.7%" },
   { school: "Birla Divya Jyoti, Siliguri", period: "2009 – 2020", detail: "Class X, 89.4%" },
 ];
 
@@ -167,32 +167,33 @@ export const skills: { group: string; items: string[] }[] = [
   { group: "Concepts", items: ["RESTful APIs", "JWT & RBAC", "Real-time systems", "Cloud computing", "Agile", "CI/CD", "RAG", "LLM agents"] },
 ];
 
+// TODO: Rounak is co-inventor on 10 published Indian patent applications. Only these 3 are shown until all 10 can be
+// added together: add the other 7 here (title, application number, one-line detail) and every
+// patents view (desk panel, /dev section, /dev/patents, page description) picks up the new count.
+const patentItems = [
+  {
+    title: "Hardware-integrated malicious-encryption detection",
+    number: "IN202641063054",
+    detail:
+      "A hardware-integrated system for detecting malicious encryption activity such as ransomware in real time, reaching 92–96% detection accuracy within 6–12 seconds of onset.",
+  },
+  {
+    title: "Continuous zero-trust access control via sequential deep learning",
+    number: "IN202641051551",
+    detail:
+      "A continuous, zero-trust network access-control mechanism that uses sequential deep learning models to reassess trust throughout a session, not only at sign-in.",
+  },
+  {
+    title: "ε-bound-verified fuzzy-rule surrogate modeling for LLM compression",
+    number: "IN202641043575",
+    detail:
+      "A fuzzy-rule surrogate modeling approach with verified epsilon-bounds for compressing large language models while keeping the compressed model's behaviour interpretable.",
+  },
+];
+
 export const patents = {
-  filed: 10,
+  count: patentItems.length,
   areas: ["Cybersecurity", "AI/ML", "Healthcare informatics"],
-  intro:
-    "Co-inventor on 10 filed Indian patent applications at Vellore Institute of Technology, spanning cybersecurity, AI/ML and healthcare informatics.",
-  // TODO: only 3 of the 10 filings are listed. Add the others (title, application number, one-line
-  // detail) here and every patents view (desk panel, /dev section, /dev/patents) picks them up.
-  items: [
-    {
-      title: "Hardware-integrated malicious-encryption detection",
-      number: "IN202641063054",
-      detail:
-        "A hardware-integrated system for detecting malicious encryption activity such as ransomware in real time, reaching 92–96% detection accuracy within 6–12 seconds of onset.",
-    },
-    {
-      title: "Continuous zero-trust access control via sequential deep learning",
-      number: "IN202641051551",
-      detail:
-        "A continuous, zero-trust network access-control mechanism that uses sequential deep learning models to reassess trust throughout a session, not only at sign-in.",
-    },
-    {
-      title: "ε-bound-verified fuzzy-rule surrogate modeling for LLM compression",
-      number: "IN202641043575",
-      detail:
-        "A fuzzy-rule surrogate modeling approach with verified epsilon-bounds for compressing large language models while keeping the compressed model's behaviour interpretable.",
-    },
-  ],
-  outro: "Further filings cover related work in the same cybersecurity, AI/ML and healthcare-informatics areas.",
+  intro: `Co-inventor on ${patentItems.length} published Indian patent applications at Vellore Institute of Technology, spanning cybersecurity, AI/ML and healthcare informatics.`,
+  items: patentItems,
 };

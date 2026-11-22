@@ -7,7 +7,7 @@ export const metadata = pageMetadata({
   title: "Patents | Rounak Agarwal",
   absoluteTitle: true,
   description:
-    "Patent portfolio of Rounak Agarwal: co-inventor on 10 filed Indian patent applications spanning cybersecurity, AI/ML and healthcare informatics.",
+    `Patent portfolio of Rounak Agarwal: co-inventor on ${patents.count} published Indian patent applications spanning cybersecurity, AI/ML and healthcare informatics.`,
   path: "/dev/patents",
 });
 
@@ -26,7 +26,6 @@ export default function PatentsPage() {
           </li>
         ))}
       </ul>
-      <p className="mt-8 text-charcoal-soft">{patents.outro}</p>
     </div>
   );
 }

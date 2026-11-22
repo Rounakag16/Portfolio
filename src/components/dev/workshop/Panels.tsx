@@ -263,7 +263,7 @@ export function PatentsPanel() {
         ))}
       </ul>
       <p className="text-sm text-charcoal-soft">
-        {patents.outro} <Link href="/dev/patents" className={linkClass}>All patent applications</Link>
+        <Link href="/dev/patents" className={linkClass}>Patent details</Link>
       </p>
     </div>
   );

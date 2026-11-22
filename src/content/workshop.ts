@@ -15,7 +15,7 @@ export const workshop = {
     toolbox: { label: "Skills", title: "Skills and tools", hint: "Opens skills" },
     education: { label: "Education", title: "Education", hint: "Opens education" },
     certificates: { label: "Certifications", title: "Certifications and achievements", hint: "Opens certifications and competitive programming" },
-    patents: { label: "Patents", title: "Patents", hint: "Opens patent applications" },
+    patents: { label: "Patents", title: "Patents", hint: "Opens published patent applications" },
     resume: { label: "Resume", title: "Resume", hint: "Opens the resume in Google Drive" },
     phone: { label: "Contact", title: "Get in touch", hint: "Opens contact details" },
     mug: { label: "About", title: "About me", hint: "Opens about and availability" },

@@ -142,8 +142,7 @@ export default function DevPage() {
           ))}
         </ul>
         <p className="mt-6 text-charcoal-soft">
-          {patents.outro}{" "}
-          <Link href="/dev/patents" className="font-semibold text-teal-deep underline underline-offset-4 hover:text-charcoal">All patent applications</Link>
+          <Link href="/dev/patents" className="font-semibold text-teal-deep underline underline-offset-4 hover:text-charcoal">Patent details</Link>
         </p>
       </Section>
 
