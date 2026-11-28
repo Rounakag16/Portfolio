@@ -155,9 +155,9 @@ export default function HomePage() {
                 followers into customers.
               </p>
               <p>
-                Want to see who you&apos;d be working with? Say hi on my personal Instagram,{" "}
-                <a href={site.instagramPersonal.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-charcoal underline decoration-orange decoration-2 underline-offset-4">
-                  @{site.instagramPersonal.handle}
+                Want to see who you&apos;d be working with? Say hi on Instagram,{" "}
+                <a href={site.instagramBusiness.url} target="_blank" rel="noopener noreferrer" data-track="contact_click" data-track-label="instagram-about" className="font-semibold text-charcoal underline decoration-orange decoration-2 underline-offset-4">
+                  @{site.instagramBusiness.handle}
                 </a>
                 .
               </p>
