@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Avatar } from "@/components/Avatar";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BeforeAfter } from "@/components/client/BeforeAfter";
 import { ChatHeading } from "@/components/client/ChatHeading";
@@ -26,9 +27,14 @@ export default async function CaseStudyPage({ params }: Params) {
 
   return (
     <article className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
-      <p className="font-medium text-teal-deep">{study.businessType}</p>
-      <h1 className="mt-2 text-4xl font-bold sm:text-5xl">{study.title}</h1>
-      <p className="mt-4 max-w-[56ch] text-lg text-charcoal-soft">{study.summary}</p>
+      <div className="grid items-end gap-8 md:grid-cols-[1fr_auto]">
+        <div>
+          <p className="font-medium text-teal-deep">{study.businessType}</p>
+          <h1 className="mt-2 text-4xl font-bold sm:text-5xl">{study.title}</h1>
+          <p className="mt-4 max-w-[56ch] text-lg text-charcoal-soft">{study.summary}</p>
+        </div>
+        <Avatar pose="presenting" width={130} className="hidden md:block" />
+      </div>
 
       <div className="mt-12 grid gap-12 md:grid-cols-[1fr_320px]">
         <div className="space-y-12">

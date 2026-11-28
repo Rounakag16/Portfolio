@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Avatar } from "@/components/Avatar";
 import { Logo } from "@/components/Logo";
 import { ChatHeading } from "@/components/client/ChatHeading";
 
@@ -13,6 +14,7 @@ export default function NotFound() {
         <div className="mx-auto flex h-16 max-w-5xl items-center px-4 sm:px-6"><Logo /></div>
       </header>
       <main id="main" className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
+        <Avatar pose="shrug" width={150} className="mx-auto mb-6" />
         <ChatHeading as="h1">Where did this page go?</ChatHeading>
         <div className="mt-4 flex justify-end">
           <p className="max-w-[46ch] rounded-[1.6rem] rounded-br-md bg-orange px-6 py-4 text-lg text-charcoal">

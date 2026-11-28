@@ -79,9 +79,9 @@ public/avatar/               avatar PNGs go here
 - Old URLs redirect in `next.config.ts` (`/index.html` → `/`, `/patents.html` → `/dev/patents`). Don't remove these.
 
 **Avatar**
-- Source artwork lives in `design/avatar-source/` (not published). `python design/avatar-source/make_avatars.py` removes the beige background, trims and pads each image to the 5:6 canvas and writes `public/avatar/<pose>.png`, plus a head-and-shoulders `head.png`.
-- To add a pose: put the artwork in `design/avatar-source/`, map its file name to a pose in `POSES` in the script, run it, then add the pose name to the `READY` set in `Avatar.tsx`.
-- Ready: waving, facepalm, celebrating, laptop, pointing-left, pointing-right, thinking, head. Still drawn as vector stand-ins: thumbs-up, holding-phone, shrug, arms-crossed, presenting (none is used on a page right now).
+- Originals (with and without background, plus face expressions and profile pictures) are in Rounak's `Documents/Rounak Builds/` folder. The transparent versions used by the site are copied to `design/avatar-source/<pose>.png` (not published). `python design/avatar-source/make_avatars.py` trims and pads each to the 5:6 canvas and writes `public/avatar/<pose>.png`, plus a head-and-shoulders `head.png` from `face-happy.png`.
+- To add a pose: put the transparent PNG in `design/avatar-source/` named after the pose, run the script, then add the name to the `Pose` type in `Avatar.tsx`.
+- All poses are real art: waving, facepalm, celebrating, laptop, pointing-left, pointing-right, thinking, thumbs-up, holding-phone, shrug (404 page), arms-crossed, presenting (case studies), head. Unused for now: thinking, thumbs-up, holding-phone, arms-crossed.
 
 ## Working with Rounak
 
@@ -92,7 +92,6 @@ public/avatar/               avatar PNGs go here
 ## Open items
 
 - No business WhatsApp number yet (Nov 2026). `whatsappNumber` stays empty on purpose; buttons fall back to the contact form. The personal number is never used.
-- Remaining avatar poses (see Avatar above).
 - Final fonts, pricing (the site says "pricing on request").
 - Decided: DeedTracker stays private (no code or live links). Instagram is @rounakbuilds. Tally form is xVD7g9. Domain ownership for client sites is the customer's choice. The resume is served from Google Drive; `/resume` and the old `/assets/ResumeRounak.pdf` redirect there.
 - The demo sites `cafe.rounak.tech` and `store.rounak.tech` aren't built yet. Set `demoLive: true` in `work.ts` when each one goes live.
@@ -106,4 +105,4 @@ Constraints that still hold: the stacked-card page stays the mobile and screen-r
 Still to do:
 - Freelance work reframed technically (admin panels, payments, performance), once there are real projects to describe.
 - Rounak's own process notes and architecture sketches for the sketchbook (TODO in `content/workshop.ts`).
-- Swap the avatar stand-in into the scene once the PNGs exist.
+- Put the avatar (e.g. `laptop` or `thinking`) into the desk scene; all pose PNGs now exist.
